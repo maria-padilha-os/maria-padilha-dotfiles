@@ -22,7 +22,23 @@ local function scheme()
     return data
 end
 
-local data = scheme() or {}
+-- Fallback for a cold start: the compositor's generated palette is tracked in
+-- the dotfiles checkout, so it exists before the shell writes scheme.json.
+-- Without it a window opened early falls back to WezTerm's black default.
+local function tracked_scheme()
+    local f = io.open((os.getenv 'HOME') .. '/.config/hypr/scheme/current.lua', 'r')
+    if not f then return nil end
+    local body = f:read '*a'
+    f:close()
+    local colours = {}
+    for key, value in body:gmatch('([%w_]+)%s*=%s*"([%x]+)"') do
+        colours[key] = value
+    end
+    if not colours.surface then return nil end
+    return { colours = colours }
+end
+
+local data = scheme() or tracked_scheme() or {}
 local c = data.colours or {}
 local mode = data.mode
 
