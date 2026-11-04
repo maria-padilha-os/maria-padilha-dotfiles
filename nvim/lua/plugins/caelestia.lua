@@ -18,6 +18,20 @@ vim.api.nvim_create_autocmd("VimEnter", {
     callback = function() pcall(vim.cmd.colorscheme, "caelestia") end,
 })
 
+-- nvim-tree is lazy and NvChad's opts run base46's nvimtree integration, which
+-- repaints NvimTreeNormal dark after the colorscheme applied. Re-apply only the
+-- tree groups (a full :colorscheme would run highlight clear and wipe groups
+-- installed by later plugins).
+vim.api.nvim_create_autocmd("User", {
+    pattern = "NvimTreeSetup",
+    group = vim.api.nvim_create_augroup("caelestia_nvimtree", { clear = true }),
+    callback = function()
+        if vim.g.colors_name == "caelestia" and _G.caelestia_nvimtree_highlights then
+            _G.caelestia_nvimtree_highlights()
+        end
+    end,
+})
+
 -- optional = true so this only applies if LazyVim is already installed
 return {
     { "LazyVim/LazyVim", optional = true, opts = { colorscheme = "caelestia" } },
