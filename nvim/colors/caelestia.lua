@@ -313,6 +313,28 @@ local function apply(p, mode)
     hl("MiniIconsPurple", { fg = p.term5 })
     hl("MiniIconsRed",    { fg = p.error })
     hl("MiniIconsYellow", { fg = p.term3 })
+
+    -- Keep :terminal on the editor background and the wallpaper palette.
+    -- base46's term cache sets g:terminal_color_* at startup; overwrite it so
+    -- terminal programs follow the wallpaper too. Pin the window highlight as
+    -- well so a terminal opened before a palette switch (or in a float, which
+    -- defaults to NormalFloat) does not keep the old background.
+    for i = 0, 15 do
+        local value = p["term" .. i]
+        if value then vim.g["terminal_color_" .. i] = value end
+    end
+
+    local term_hl = "Normal:Normal,NormalNC:NormalNC,"
+        .. "StatusLine:StatusLineTerm,StatusLineNC:StatusLineTermNC"
+    vim.api.nvim_create_autocmd("TermOpen", {
+        group = vim.api.nvim_create_augroup("caelestia_term", { clear = true }),
+        callback = function() vim.wo.winhighlight = term_hl end,
+    })
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if vim.bo[vim.api.nvim_win_get_buf(win)].buftype == "terminal" then
+            vim.wo[win].winhighlight = term_hl
+        end
+    end
 end
 
 -- Watch the directory, not the file: caelestia writes scheme.json by atomic
