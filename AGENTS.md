@@ -3,8 +3,10 @@
 Read `/home/machine/Códigos/padilha/AGENTS.md` first; this is the repo-specific
 summary.
 
-Scope: Hyprland (`hypr/`), Neovim (`nvim/`), WezTerm (`wezterm/`). These are
-linked into `~/.config/{hypr,nvim,wezterm}` on the live machine.
+Scope: Hyprland (`hypr/`), Neovim (`nvim/`), WezTerm (`wezterm/`), and the
+static Midnight Commander files (`mc/`). These are linked into
+`~/.config/{hypr,nvim,wezterm}` and the selected files under `~/.config/mc`.
+The generated caelestia MC skin stays in `padilha-de`.
 
 ## Safety
 
