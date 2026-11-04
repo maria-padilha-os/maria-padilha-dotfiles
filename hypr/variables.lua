@@ -45,9 +45,9 @@ return {
     windowOpacity              = 0.95,
     windowRounding             = 10,
     windowRoundingPower        = 2,
-    windowBorderSize           = 1,
-    activeWindowBorderColour   = "rgba(" .. scheme.primary .. "e6)",
-    inactiveWindowBorderColour = "rgba(" .. scheme.onSurfaceVariant .. "11)",
+    windowBorderSize           = 2,
+    activeWindowBorderColour   = "rgba(" .. scheme.primary .. "ff)",
+    inactiveWindowBorderColour = "rgba(" .. scheme.onSurfaceVariant .. "22)",
 
     -- Misc
     volumeStep                 = 10,
