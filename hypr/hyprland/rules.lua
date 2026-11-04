@@ -42,9 +42,9 @@ local todo_app_tag = "todo_app"
 -- Apply default opacity to all windows except fullscreen
 hl.window_rule({ match = { fullscreen = false }, opacity = vars.windowOpacity .. " override" })
 
--- WezTerm keeps slightly more opacity than the global rule; the specific
--- rule wins so the compositor does not flatten it back to 0.95.
-hl.window_rule({ match = { class = "org.wezfurlong.wezterm" }, opacity = "0.85 override" })
+-- WezTerm owns its 0.85 surface opacity. A compositor override of 1.0 adds no
+-- second dimming layer; 0.85 here would multiply it down to about 0.72.
+hl.window_rule({ match = { class = "org.wezfurlong.wezterm" }, opacity = "1.0 override" })
 
 -- Center all floating windows except xwayland windows (xwayland popups count as windows)
 hl.window_rule({ match = { float = true, xwayland = false }, center = true })
