@@ -3,7 +3,7 @@ local fn   = require("utils.functions")
 local home = os.getenv("HOME")
 
 -- Prefer the installed command; a checkout that has not been packaged yet
--- falls back to the sibling padilha-de/bin, resolved through the
+-- falls back to the sibling lilith-de/bin, resolved through the
 -- ~/.config/hypr symlink so the repositories can live anywhere.
 local function padilha_bin(name)
     local fallback = name
@@ -14,7 +14,7 @@ local function padilha_bin(name)
         handle:close()
         local root = config_dir and config_dir:match("^(.*)/hypr$")
         if root then
-            local sibling = root .. "/../padilha-de/bin/" .. name
+            local sibling = root .. "/../lilith-de/bin/" .. name
             local probe = io.open(sibling, "r")
             if probe then
                 probe:close()

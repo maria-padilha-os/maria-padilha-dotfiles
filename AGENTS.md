@@ -1,12 +1,12 @@
-# AGENTS.md — padilha-dotfiles
+# AGENTS.md — lilith-dotfiles (GitHub `padilha-dotfiles`)
 
-Read `/home/machine/Códigos/padilha/AGENTS.md` first; this is the repo-specific
-summary.
+Read `/home/machine/Códigos/lilith/AGENTS.md` first; this is the repo-specific
+summary. The checkout is `lilith-dotfiles`; the remote keeps the Padilha name.
 
 Scope: Hyprland (`hypr/`), Neovim (`nvim/`), WezTerm (`wezterm/`), and the
 static Midnight Commander files (`mc/`). These are linked into
 `~/.config/{hypr,nvim,wezterm}` and the selected files under `~/.config/mc`.
-The generated caelestia MC skin stays in `padilha-de`.
+The generated caelestia MC skin stays in `lilith-de`.
 
 ## Safety
 
