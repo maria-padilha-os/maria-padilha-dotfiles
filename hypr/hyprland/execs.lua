@@ -62,6 +62,11 @@ hl.on("hyprland.start", function()
     -- first, so the generated config is what it reads.
     hl.exec_cmd(padilha_bin("padilha-session"))
 
+    -- Keep the shell alive if it crashes; logs to
+    -- ~/.local/state/padilha/shell-watch.log. It waits 20s before its first
+    -- check, so it does not race the session startup above.
+    hl.exec_cmd(padilha_bin("padilha-shell-watch"))
+
     -- Two wallpapers a day: white from 06:00, black from 18:00. Each switch
     -- rebuilds the palette from the image and re-themes every application.
     hl.exec_cmd("sleep 2 && " .. padilha_bin("padilha-daylight"))
