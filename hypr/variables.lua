@@ -54,7 +54,7 @@ return {
     volumeMax                  = 100,
     cursorTheme                = "sweet-cursors",
     cursorSize                 = 24,
-    sleepGestureCmd            = "systemctl hibernate",
+    sleepGestureCmd            = "notify-send -u critical -a Padilha 'Sleep is disabled' 's2idle/hibernate are broken on this laptop; close the lid to lock.'",
     specialWsCloseAny          = true,
 
     ------------------
