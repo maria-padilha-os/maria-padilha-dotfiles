@@ -69,6 +69,11 @@ create_bind(vars.kbDashboardDash, hl.dsp.global("caelestia:dashboardDash"))
 create_bind(vars.kbDashboardMedia, hl.dsp.global("caelestia:dashboardMedia"))
 create_bind(vars.kbDashboardPerformance, hl.dsp.global("caelestia:dashboardPerformance"))
 create_bind(vars.kbDashboardWeather, hl.dsp.global("caelestia:dashboardWeather"))
+-- Extension tabs; same toggle behaviour as the built-in dashboard tabs.
+create_bind(vars.kbExtensionTranslator, hl.dsp.global("caelestia:extensionTranslator"))
+create_bind(vars.kbExtensionCalculator, hl.dsp.global("caelestia:extensionCalculator"))
+create_bind(vars.kbExtensionMaps, hl.dsp.global("caelestia:extensionMaps"))
+create_bind(vars.kbExtensionTuner, hl.dsp.global("caelestia:extensionTuner"))
 create_bind(vars.kbLock, hl.dsp.global("caelestia:lock"))
 
 -- Restore lock
