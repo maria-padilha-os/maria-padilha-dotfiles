@@ -103,7 +103,6 @@ end
 map({ "n", "t", "i" },      "<A-j>", mterm("float", "1"),                               { desc = "Term toggle f"   })
 map({ "n", "t", "i" },      "<A-k>", mterm("float", "2"),                               { desc = "Term toggle F"   })
 map({ "n", "t", "i" },      "<A-l>", mterm("float", "3"),                               { desc = "Term toggle v"   })
-map({ "n", "t", "i" },      "<A-h>", mterm("float", "4"),                               { desc = "Term toggle hf"  })
 map({ "n", "t", "i" },      "<A-;>", mterm("sp",    "h"),                               { desc = "Term toggle h"   })
 map({ "n", "t", "i" },      "<A-:>", mterm("vsp",   "v"),                               { desc = "Term toggle v"   })
 --map({ "t", "t", "i" },      "<C-t>", replace("<C-\\><C-N>", true, true, true),          { desc = "Term normal mode"})
