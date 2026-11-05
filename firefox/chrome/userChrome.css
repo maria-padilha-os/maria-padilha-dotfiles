@@ -1,0 +1,259 @@
+/* Lilith - Firefox browser chrome.
+ *
+ * The palette is not in this file: chrome/lilith.css is generated from the
+ * current Material You scheme by `lilith-theme apply` and feeds the
+ * --lilith-* custom properties used below. Changing the wallpaper is enough
+ * to repaint Firefox; restart Firefox to pick up a new lilith.css.
+ *
+ * Install with `lilith-dots firefox` after Firefox has been launched once.
+ * user.js turns on toolkit.legacyUserProfileCustomizations.stylesheets, which
+ * is what makes Firefox load this sheet at all.
+ */
+
+@import url("lilith.css");
+
+/* Fallbacks until the first `lilith-theme apply` writes chrome/lilith.css.
+ * The generated :root has higher specificity than :where(:root), so these
+ * values are ignored as soon as the palette exists. They match the palette
+ * tracked in hypr/scheme/current.lua. */
+:where(:root) {
+  --lilith-bg: #fff8f6;
+  --lilith-surface: #fff8f6;
+  --lilith-surface-dim: #e8d6d3;
+  --lilith-surface-lowest: #ffffff;
+  --lilith-surface-low: #fff0ee;
+  --lilith-surface-container: #fceae6;
+  --lilith-surface-container-high: #f7e4e1;
+  --lilith-surface-container-highest: #f1dfdb;
+  --lilith-on-surface: #231918;
+  --lilith-on-surface-variant: #534340;
+  --lilith-primary: #904b3e;
+  --lilith-on-primary: #ffffff;
+  --lilith-primary-container: #ffdad4;
+  --lilith-on-primary-container: #3a0a04;
+  --lilith-secondary: #775650;
+  --lilith-secondary-container: #ffdad4;
+  --lilith-tertiary: #6f5c2e;
+  --lilith-outline: #857370;
+  --lilith-outline-variant: #d8c2be;
+  --lilith-error: #ba1a1a;
+  --lilith-on-error: #ffffff;
+  --lilith-inverse-surface: #392e2c;
+  --lilith-inverse-on-surface: #ffedea;
+  --lilith-scheme: Light;
+}
+
+:root {
+  color-scheme: var(--lilith-scheme) !important;
+
+  /* Firefox design tokens (128+). These cover most of the chrome without
+   * touching individual elements. */
+  --background-color-canvas: var(--lilith-bg) !important;
+  --background-color-box: var(--lilith-surface-container) !important;
+  --text-color: var(--lilith-on-surface) !important;
+  --text-color-deemphasized: var(--lilith-on-surface-variant) !important;
+  --card-background-color: var(--lilith-surface-low) !important;
+  --card-border-color: var(--lilith-outline-variant) !important;
+  --popup-background-color: var(--lilith-surface-container) !important;
+  --panel-border-color: var(--lilith-outline-variant) !important;
+  --panel-separator-color: var(--lilith-outline-variant) !important;
+  --input-background-color: var(--lilith-surface-container) !important;
+  --input-text-color: var(--lilith-on-surface) !important;
+  --focus-outline-color: var(--lilith-primary) !important;
+
+  --toolbox-background-color: var(--lilith-bg) !important;
+  --toolbox-background-color-inactive: var(--lilith-bg) !important;
+  --toolbox-text-color: var(--lilith-on-surface) !important;
+  --toolbox-text-color-inactive: var(--lilith-on-surface) !important;
+  --toolbar-background-color: var(--lilith-surface) !important;
+  --toolbar-text-color: var(--lilith-on-surface) !important;
+  --toolbar-color-scheme: var(--lilith-scheme) !important;
+  --toolbar-field-background-color: var(--lilith-surface-container) !important;
+  --toolbar-field-background-color-focus: var(--lilith-surface-container-high) !important;
+  --toolbar-field-text-color: var(--lilith-on-surface) !important;
+  --toolbar-field-text-color-focus: var(--lilith-on-surface) !important;
+  --toolbar-field-border-color: var(--lilith-outline-variant) !important;
+  --toolbar-field-border-color-focus: var(--lilith-primary) !important;
+  --toolbarseparator-color: var(--lilith-outline-variant) !important;
+  --chrome-content-separator-color: var(--lilith-outline-variant) !important;
+
+  --toolbarbutton-background-color-hover: color-mix(in srgb, var(--lilith-on-surface) 10%, transparent) !important;
+  --toolbarbutton-background-color-active: color-mix(in srgb, var(--lilith-on-surface) 18%, transparent) !important;
+  --toolbarbutton-icon-fill: var(--lilith-on-surface) !important;
+  --toolbarbutton-icon-fill-attention: var(--lilith-primary) !important;
+  --toolbarbutton-outline-color: var(--lilith-outline-variant) !important;
+
+  --tab-background-color: transparent !important;
+  --tab-background-color-hover: color-mix(in srgb, var(--lilith-on-surface) 9%, transparent) !important;
+  --tab-background-color-selected: var(--lilith-surface-container) !important;
+  --tab-text-color: var(--lilith-on-surface-variant) !important;
+  --tab-text-color-hover: var(--lilith-on-surface) !important;
+  --tab-text-color-selected: var(--lilith-on-surface) !important;
+  --tab-border-color: transparent !important;
+  --tab-border-color-hover: transparent !important;
+  --tab-border-color-selected: var(--lilith-primary) !important;
+
+  --urlbar-background-color: var(--lilith-surface-container) !important;
+  --urlbar-background-color-focus: var(--lilith-surface-container-high) !important;
+  --urlbar-box-background-color: color-mix(in srgb, var(--lilith-primary) 14%, transparent) !important;
+  --urlbar-box-background-color-hover: color-mix(in srgb, var(--lilith-primary) 22%, transparent) !important;
+  --urlbar-box-text-color: var(--lilith-on-surface) !important;
+  --urlbar-box-text-color-hover: var(--lilith-on-surface) !important;
+
+  /* Legacy theme properties. Firefox still reads these for the tab strip,
+   * the title bar and the older panels; keeping them in sync avoids a flash
+   * of the previous theme. */
+  --lwt-accent-color: var(--lilith-bg) !important;
+  --lwt-accent-color-inactive: var(--lilith-bg) !important;
+  --lwt-text-color: var(--lilith-on-surface) !important;
+  --lwt-toolbar-field-background-color: var(--lilith-surface-container) !important;
+  --lwt-toolbar-field-color: var(--lilith-on-surface) !important;
+  --lwt-toolbar-field-border-color: var(--lilith-outline-variant) !important;
+  --lwt-toolbar-field-focus: var(--lilith-surface-container-high) !important;
+  --lwt-toolbar-field-focus-color: var(--lilith-on-surface) !important;
+  --lwt-selected-tab-background-color: var(--lilith-surface-container) !important;
+  --lwt-tab-line-color: var(--lilith-primary) !important;
+
+  /* Panels, menus and the arrow panel. */
+  --panel-background: var(--lilith-surface-container) !important;
+  --panel-color: var(--lilith-on-surface) !important;
+  --panel-item-hover-bgcolor: color-mix(in srgb, var(--lilith-primary) 14%, transparent) !important;
+  --panel-item-active-bgcolor: color-mix(in srgb, var(--lilith-primary) 22%, transparent) !important;
+  --arrowpanel-background: var(--lilith-surface-container) !important;
+  --arrowpanel-color: var(--lilith-on-surface) !important;
+  --arrowpanel-border-color: var(--lilith-outline-variant) !important;
+  --arrowpanel-dimmed: color-mix(in srgb, var(--lilith-on-surface) 8%, transparent) !important;
+  --arrowpanel-dimmed-further: color-mix(in srgb, var(--lilith-on-surface) 14%, transparent) !important;
+}
+
+/* Toolbox, tab strip and toolbars. */
+#navigator-toolbox {
+  background-color: var(--lilith-bg) !important;
+  background-image: none !important;
+  border-bottom: 1px solid var(--lilith-outline-variant) !important;
+}
+
+#TabsToolbar,
+#toolbar-menubar,
+.browser-titlebar {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--lilith-on-surface) !important;
+}
+
+#nav-bar {
+  background-color: var(--lilith-surface) !important;
+  background-image: none !important;
+  border-top: 1px solid var(--lilith-outline-variant) !important;
+  box-shadow: none !important;
+}
+
+#PersonalToolbar {
+  background-color: var(--lilith-bg) !important;
+  color: var(--lilith-on-surface) !important;
+}
+
+#PersonalToolbar toolbarbutton {
+  color: var(--lilith-on-surface) !important;
+}
+
+/* Address bar. The tokens above do most of the work; these rules cover the
+ * focused/open border and the text inside it. */
+#urlbar-background,
+.urlbar-background {
+  background-color: var(--urlbar-background-color) !important;
+  border-color: var(--toolbar-field-border-color) !important;
+  box-shadow: none !important;
+}
+
+#urlbar[focused] > #urlbar-background,
+#urlbar[open] > #urlbar-background,
+#urlbar[focused] > .urlbar-background,
+#urlbar[open] > .urlbar-background {
+  border-color: var(--lilith-primary) !important;
+}
+
+#urlbar-input,
+#searchbar input,
+.searchbar-textbox {
+  color: var(--lilith-on-surface) !important;
+  caret-color: var(--lilith-primary) !important;
+}
+
+#urlbar-input::placeholder,
+#searchbar input::placeholder {
+  color: var(--lilith-on-surface-variant) !important;
+  opacity: 1 !important;
+}
+
+/* The result list under the address bar. */
+.urlbarView {
+  background-color: var(--lilith-surface-container) !important;
+  color: var(--lilith-on-surface) !important;
+  border: 1px solid var(--lilith-outline-variant) !important;
+  border-top: 0 !important;
+}
+
+.urlbarView-row:is([selected], :hover) {
+  background-color: color-mix(in srgb, var(--lilith-primary) 14%, transparent) !important;
+}
+
+.urlbarView-url {
+  color: var(--lilith-primary) !important;
+}
+
+.urlbarView-title-separator {
+  color: var(--lilith-on-surface-variant) !important;
+}
+
+/* Sidebar, find bar, downloads and the status bubble. */
+#sidebar-box,
+#sidebar-header,
+#sidebar {
+  background-color: var(--lilith-bg) !important;
+  color: var(--lilith-on-surface) !important;
+  border-color: var(--lilith-outline-variant) !important;
+}
+
+findbar {
+  background-color: var(--lilith-surface-container) !important;
+  color: var(--lilith-on-surface) !important;
+  border-top: 1px solid var(--lilith-outline-variant) !important;
+}
+
+findbar .findbar-textbox {
+  background-color: var(--lilith-surface) !important;
+  color: var(--lilith-on-surface) !important;
+  border: 1px solid var(--lilith-outline-variant) !important;
+}
+
+#statuspanel-label {
+  background-color: var(--lilith-surface-container) !important;
+  color: var(--lilith-on-surface) !important;
+  border: 1px solid var(--lilith-outline-variant) !important;
+}
+
+/* Menus. */
+menupopup,
+panel {
+  --panel-background: var(--lilith-surface-container) !important;
+  --panel-color: var(--lilith-on-surface) !important;
+  --panel-border-color: var(--lilith-outline-variant) !important;
+  --panel-separator-color: var(--lilith-outline-variant) !important;
+}
+
+menupopup > menuitem[_moz-menuactive="true"],
+menupopup > menu[_moz-menuactive="true"] {
+  background-color: color-mix(in srgb, var(--lilith-primary) 14%, transparent) !important;
+  color: var(--lilith-on-surface) !important;
+}
+
+/* Selection and the private-browsing badge. */
+::selection {
+  background-color: var(--lilith-primary-container) !important;
+  color: var(--lilith-on-primary-container) !important;
+}
+
+#private-browsing-indicator-with-label {
+  color: var(--lilith-primary) !important;
+}

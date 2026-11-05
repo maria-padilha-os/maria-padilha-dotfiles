@@ -1,0 +1,48 @@
+{
+    "colorscheme": "lilith",
+    "syntax": true,
+    "truecolor": "on",
+
+    "tabsize": 4,
+    "tabstospaces": true,
+    "autoindent": true,
+    "autosave": 0,
+    "eofnewline": true,
+    "mkparents": true,
+    "parsecursor": true,
+
+    "softwrap": true,
+    "wordwrap": false,
+
+    "cursorline": true,
+    "ruler": true,
+    "relativeruler": false,
+    "statusline": true,
+    "statusformatl": "$(filename) $(modified)($(line),$(col)) | $(opt:filetype) | $(opt:fileformat) | $(opt:encoding)",
+    "statusformatr": "$(bind:ToggleKeyMenu): bindings, $(bind:ToggleHelp): help",
+
+    "mouse": true,
+    "clipboard": "external",
+    "savecursor": true,
+    "saveundo": true,
+    "savehistory": true,
+    "backup": true,
+    "permbackup": false,
+
+    "hlsearch": true,
+    "incsearch": true,
+    "matchbrace": true,
+    "matchbracestyle": "highlight",
+    "scrollbar": true,
+    "scrollmargin": 3,
+
+    "hltaberrors": true,
+    "hltrailingws": true,
+    "rmtrailingws": false,
+    "tabhighlight": true,
+
+    "lsp.server": "c=clangd,c++=clangd,objc=clangd,lua=lua-language-server,python=pyright-langserver --stdio,typescript=typescript-language-server --stdio,javascript=typescript-language-server --stdio,go=gopls,rust=rust-analyzer,shell=bash-language-server start,json=vscode-json-language-server --stdio,html=vscode-html-language-server --stdio,css=vscode-css-language-server --stdio,yaml=yaml-language-server --stdio,markdown=marksman server,zig=zls,php=intelephense --stdio",
+    "lsp.formatOnSave": false,
+    "lsp.autocompleteDetails": false,
+    "lsp.tabcompletion": true
+}
