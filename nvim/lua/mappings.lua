@@ -115,7 +115,10 @@ map({ "n", "t", "i" },      "<A-j>", mterm("float", "1"),                       
 map({ "n", "t", "i" },      "<A-k>", mterm("float", "2"),                               { desc = "Term toggle F"   })
 map({ "n", "t", "i" },      "<A-l>", mterm("float", "3"),                               { desc = "Term toggle v"   })
 map({ "n", "t", "i" },      "<A-h>", mterm("float", "4"),                               { desc = "Term toggle hf"  })
-map({ "n", "t", "i" },      "<A-;>", mterm("sp",    "h"),                               { desc = "Term toggle h"   })
+-- ABNT2: the ç key sits where a US keyboard has ';', and the kitty encoding
+-- reports that base key, so Alt+ç arrives here as <A-;>. It must close, not
+-- toggle the horizontal terminal (that binding was swallowing the chord).
+map({ "n", "t", "i" },      "<A-;>", close_current,                                      { desc = "General quit / close terminal" })
 map({ "n", "t", "i" },      "<A-:>", mterm("vsp",   "v"),                               { desc = "Term toggle v"   })
 --map({ "t", "t", "i" },      "<C-t>", replace("<C-\\><C-N>", true, true, true),          { desc = "Term normal mode"})
 
