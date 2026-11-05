@@ -1,6 +1,6 @@
 local home   = os.getenv("HOME")
 local hypr   = home .. "/.config/hypr"
-package.path = package.path .. ";" .. home .. "/.config/caelestia/?.lua"
+package.path = package.path .. ";" .. home .. "/.config/lilith/?.lua"
 
 -- Create a file if it doesn't exist, optionally with initial content
 local function maybe_create(file, content)
@@ -43,7 +43,7 @@ maybe_copy(hypr .. "/scheme/default.lua", hypr .. "/scheme/current.lua")
 
 -- User variables
 local overrides = maybe_create(
-    home .. "/.config/caelestia/hypr-vars.lua",
+    home .. "/.config/lilith/hypr-vars.lua",
     "return {}\n"
 ) and require("hypr-vars") or {}
 
@@ -64,7 +64,7 @@ hl.monitor({
 
 -- Monitor rules written by the settings app. The default above only applies
 -- when this file is empty, so a saved layout wins on the next reload.
-local monitors_file = home .. "/.config/caelestia/monitors.lua"
+local monitors_file = home .. "/.config/lilith/monitors.lua"
 if maybe_create(monitors_file, "return {}\n") then
     local ok, rules = pcall(dofile, monitors_file)
     if ok and type(rules) == "table" then
@@ -90,6 +90,6 @@ require("hyprland.gestures")
 require("hyprland.keybinds")
 
 -- User configs
-if maybe_create(home .. "/.config/caelestia/hypr-user.lua") then
+if maybe_create(home .. "/.config/lilith/hypr-user.lua") then
     require("hypr-user")
 end

@@ -1,4 +1,4 @@
--- Padilha terminal.
+-- Lilith terminal.
 --
 -- WezTerm is configured in Lua, like the compositor and the desktop config,
 -- and it renders from the same palette as everything else: the sixteen ANSI

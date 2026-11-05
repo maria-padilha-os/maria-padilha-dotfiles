@@ -48,13 +48,13 @@ if runtime_dir then
     hl.env("SSH_AUTH_SOCK", runtime_dir .. "/ssh-agent.sock")
 end
 
--- Padilha shell: the checkout is ~/Códigos/lilith/lilith-de, out of ~/.config,
+-- Lilith shell: the checkout is ~/Códigos/lilith/lilith-de, out of ~/.config,
 -- and ~/.config/quickshell/caelestia symlinks into its shell/. The C++ QML
 -- modules come from its build tree.
 local project = home .. "/Códigos/lilith/lilith-de"
 hl.env("QML2_IMPORT_PATH", project .. "/build/qml")
 
--- The project's own commands (padilha, padilha-shot, padilha-record, ...).
+-- The project's own commands (lilith, lilith-shot, lilith-record, ...).
 -- Packaged installs put them in /usr/bin and this line can go.
 if os.getenv("PATH") then
     hl.env("PATH", project .. "/bin:" .. os.getenv("PATH"))

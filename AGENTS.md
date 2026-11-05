@@ -1,7 +1,8 @@
 # AGENTS.md — lilith-dotfiles (GitHub `padilha-dotfiles`)
 
 Read `/home/machine/Códigos/lilith/AGENTS.md` first; this is the repo-specific
-summary. The checkout is `lilith-dotfiles`; the remote keeps the Padilha name.
+summary. The checkout is `lilith-dotfiles`; the remote keeps its current
+`padilha-dotfiles` name.
 
 Scope: Hyprland (`hypr/`), Neovim (`nvim/`), WezTerm (`wezterm/`), and the
 static Midnight Commander files (`mc/`). These are linked into

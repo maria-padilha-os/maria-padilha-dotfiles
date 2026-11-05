@@ -5,7 +5,7 @@ local home = os.getenv("HOME")
 -- Prefer the installed command; a checkout that has not been packaged yet
 -- falls back to the sibling lilith-de/bin, resolved through the
 -- ~/.config/hypr symlink so the repositories can live anywhere.
-local function padilha_bin(name)
+local function lilith_bin(name)
     local fallback = name
     local ok, handle = pcall(io.popen,
         "readlink -f -- '" .. home .. "/.config/hypr' 2>/dev/null")
@@ -56,20 +56,20 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hypridle")
 
     -- Day/night brightness; a manual change holds for four hours.
-    hl.exec_cmd(padilha_bin("padilha-brightness"))
+    hl.exec_cmd(lilith_bin("lilith-brightness"))
 
     -- Start shell. The wrapper compiles init.lua into caelestia/shell.json
     -- first, so the generated config is what it reads.
-    hl.exec_cmd(padilha_bin("padilha-session"))
+    hl.exec_cmd(lilith_bin("lilith-session"))
 
     -- Keep the shell alive if it crashes; logs to
-    -- ~/.local/state/padilha/shell-watch.log. It waits 20s before its first
+    -- ~/.local/state/lilith/shell-watch.log. It waits 20s before its first
     -- check, so it does not race the session startup above.
-    hl.exec_cmd(padilha_bin("padilha-shell-watch"))
+    hl.exec_cmd(lilith_bin("lilith-shell-watch"))
 
     -- Two wallpapers a day: white from 06:00, black from 18:00. Each switch
     -- rebuilds the palette from the image and re-themes every application.
-    hl.exec_cmd("sleep 2 && " .. padilha_bin("padilha-daylight"))
+    hl.exec_cmd("sleep 2 && " .. lilith_bin("lilith-daylight"))
 end)
 
 -- Resizer listeners

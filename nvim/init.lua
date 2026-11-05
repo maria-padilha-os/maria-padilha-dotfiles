@@ -1,7 +1,7 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
--- Padilha's colorscheme: ayu-like light/dark grammar, following the wallpaper.
+-- Lilith's colorscheme: ayu-like light/dark grammar, following the wallpaper.
 -- Set this to false to keep NvChad's selected base46 theme instead.
 vim.g.caelestia_colorscheme = true
 

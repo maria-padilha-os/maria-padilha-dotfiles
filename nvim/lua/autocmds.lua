@@ -3,7 +3,7 @@ require "nvchad.autocmds"
 -- The terminal sends SIGWINCH when the Hyprland window is resized. Neovim
 -- normally redraws, but NvChad's UI and uneven splits can lag behind; equalise
 -- the splits and force a repaint so the layout matches the new dimensions.
-local resize_group = vim.api.nvim_create_augroup("padilha_resize", { clear = true })
+local resize_group = vim.api.nvim_create_augroup("lilith_resize", { clear = true })
 local resize_timer = vim.uv.new_timer()
 
 vim.api.nvim_create_autocmd("VimResized", {
