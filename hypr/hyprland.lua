@@ -62,6 +62,20 @@ hl.monitor({
     scale    = 1,
 })
 
+-- Monitor rules written by the settings app. The default above only applies
+-- when this file is empty, so a saved layout wins on the next reload.
+local monitors_file = home .. "/.config/caelestia/monitors.lua"
+if maybe_create(monitors_file, "return {}\n") then
+    local ok, rules = pcall(dofile, monitors_file)
+    if ok and type(rules) == "table" then
+        for _, rule in ipairs(rules) do
+            if type(rule) == "table" and rule.output then
+                hl.monitor(rule)
+            end
+        end
+    end
+end
+
 -- Configs
 require("hyprland.env")
 require("hyprland.general")
