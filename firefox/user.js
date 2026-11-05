@@ -1,6 +1,6 @@
-// Lilith Firefox preferences.
+// Maria Padilha Firefox preferences.
 //
-// lilith-dots copies this file into the detected default profile. It is a
+// padilha-dots copies this file into the detected default profile. It is a
 // normal copy, not a symlink, because Firefox and profile managers expect a
 // regular user.js at the profile root; the chrome CSS next to it is linked.
 //

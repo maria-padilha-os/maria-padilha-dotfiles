@@ -1,4 +1,4 @@
--- The Lilith colorscheme is opt-in. NvChad's selected base46 theme (ayu_dark)
+-- The Maria Padilha colorscheme is opt-in. NvChad's selected base46 theme (ayu_dark)
 -- stays in charge unless this is enabled before the plugin loads:
 --
 --     vim.g.caelestia_colorscheme = true

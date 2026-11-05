@@ -48,14 +48,30 @@ if runtime_dir then
     hl.env("SSH_AUTH_SOCK", runtime_dir .. "/ssh-agent.sock")
 end
 
--- Lilith shell: the checkout is ~/Códigos/lilith/lilith-de, out of ~/.config,
--- and ~/.config/quickshell/caelestia symlinks into its shell/. The C++ QML
--- modules come from its build tree.
-local project = home .. "/Códigos/lilith/lilith-de"
-hl.env("QML2_IMPORT_PATH", project .. "/build/qml")
+-- Maria Padilha shell: the checkout sits next to this dotfiles checkout, out
+-- of ~/.config, and ~/.config/quickshell/caelestia symlinks into its shell/.
+-- The C++ QML modules come from its build tree. The legacy lilith-de checkout
+-- stays on the search path until the directory rename is complete.
+local repos_root
+do
+    local ok, handle = pcall(io.popen,
+        "readlink -f -- '" .. home .. "/.config/hypr' 2>/dev/null")
+    if ok and handle then
+        local config_dir = handle:read("*l")
+        handle:close()
+        local root = config_dir and config_dir:match("^(.*)/hypr$")
+        if root then repos_root = root .. "/.." end
+    end
+end
 
--- The project's own commands (lilith, lilith-shot, lilith-record, ...).
--- Packaged installs put them in /usr/bin and this line can go.
-if os.getenv("PATH") then
-    hl.env("PATH", project .. "/bin:" .. os.getenv("PATH"))
+if repos_root then
+    local project = repos_root .. "/maria-padilha-de"
+    local legacy_project = repos_root .. "/lilith-de"
+    hl.env("QML2_IMPORT_PATH", project .. "/build/qml:" .. legacy_project .. "/build/qml")
+
+    -- The project's own commands (padilha, padilha-shot, padilha-record, ...).
+    -- Packaged installs put them in /usr/bin and this block can go.
+    if os.getenv("PATH") then
+        hl.env("PATH", project .. "/bin:" .. legacy_project .. "/bin:" .. os.getenv("PATH"))
+    end
 end

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Install the Lilith micro configuration into ~/.config/micro.
+# Install the Maria Padilha micro configuration into ~/.config/micro.
 #
 #   micro/install.sh                 link settings.json/bindings.json, seed the
 #                                    colourscheme and install the lsp plugin
@@ -53,7 +53,7 @@ install_file() {
 
     dst="$config/$file"
     if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-        backup="$dst.pre-lilith-$(date +%Y%m%d-%H%M%S)"
+        backup="$dst.pre-padilha-$(date +%Y%m%d-%H%M%S)"
         printf 'backing up %s -> %s\n' "$dst" "$backup" >&2
         mv "$dst" "$backup"
     fi
@@ -74,14 +74,14 @@ install_file bindings.json
 # The colourscheme is generated state: the theme engine owns this path after
 # the first run. Seed the static fallback only when it is not there yet, so a
 # later wallpaper change is not clobbered by a login-time bootstrap.
-colour="$config/colorschemes/lilith.micro"
+colour="$config/colorschemes/padilha.micro"
 if [ -e "$colour" ]; then
     printf 'kept existing %s\n' "$colour"
-elif [ -f "$src/colorschemes/lilith.micro" ]; then
-    cp "$src/colorschemes/lilith.micro" "$colour"
+elif [ -f "$src/colorschemes/padilha.micro" ]; then
+    cp "$src/colorschemes/padilha.micro" "$colour"
     printf 'seeded %s\n' "$colour"
 else
-    printf 'install.sh: missing %s\n' "$src/colorschemes/lilith.micro" >&2
+    printf 'install.sh: missing %s\n' "$src/colorschemes/padilha.micro" >&2
 fi
 
 if [ "$plugins" -eq 1 ]; then

@@ -3,9 +3,10 @@ local fn   = require("utils.functions")
 local home = os.getenv("HOME")
 
 -- Prefer the installed command; a checkout that has not been packaged yet
--- falls back to the sibling lilith-de/bin, resolved through the
--- ~/.config/hypr symlink so the repositories can live anywhere.
-local function lilith_bin(name)
+-- falls back to the sibling maria-padilha-de/bin (the legacy lilith-de/bin is
+-- still probed during the transition), resolved through the ~/.config/hypr
+-- symlink so the repositories can live anywhere.
+local function padilha_bin(name)
     local fallback = name
     local ok, handle = pcall(io.popen,
         "readlink -f -- '" .. home .. "/.config/hypr' 2>/dev/null")
@@ -14,11 +15,14 @@ local function lilith_bin(name)
         handle:close()
         local root = config_dir and config_dir:match("^(.*)/hypr$")
         if root then
-            local sibling = root .. "/../lilith-de/bin/" .. name
-            local probe = io.open(sibling, "r")
-            if probe then
-                probe:close()
-                fallback = sibling
+            for _, checkout in ipairs({ "maria-padilha-de", "lilith-de" }) do
+                local sibling = root .. "/../" .. checkout .. "/bin/" .. name
+                local probe = io.open(sibling, "r")
+                if probe then
+                    probe:close()
+                    fallback = sibling
+                    break
+                end
             end
         end
     end
@@ -56,20 +60,21 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hypridle")
 
     -- Day/night brightness; a manual change holds for four hours.
-    hl.exec_cmd(lilith_bin("lilith-brightness"))
+    hl.exec_cmd(padilha_bin("padilha-brightness"))
 
     -- Start shell. The wrapper compiles init.lua into caelestia/shell.json
     -- first, so the generated config is what it reads.
-    hl.exec_cmd(lilith_bin("lilith-session"))
+    hl.exec_cmd(padilha_bin("padilha-session"))
 
     -- Keep the shell alive if it crashes; logs to
-    -- ~/.local/state/lilith/shell-watch.log. It waits 20s before its first
-    -- check, so it does not race the session startup above.
-    hl.exec_cmd(lilith_bin("lilith-shell-watch"))
+    -- ~/.local/state/padilha/shell-watch.log (legacy ~/.local/state/lilith/
+    -- during the transition). It waits 20s before its first check, so it does
+    -- not race the session startup above.
+    hl.exec_cmd(padilha_bin("padilha-shell-watch"))
 
     -- Two wallpapers a day: white from 06:00, black from 18:00. Each switch
     -- rebuilds the palette from the image and re-themes every application.
-    hl.exec_cmd("sleep 2 && " .. lilith_bin("lilith-daylight"))
+    hl.exec_cmd("sleep 2 && " .. padilha_bin("padilha-daylight"))
 end)
 
 -- Resizer listeners

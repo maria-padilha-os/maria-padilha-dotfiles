@@ -87,7 +87,7 @@ end)
 create_bind("CTRL + SUPER + SHIFT + R", hl.dsp.exec_cmd("qs -c caelestia kill"), release)
 create_bind(
     "CTRL + SUPER + ALT + R",
-    hl.dsp.exec_cmd("lilith-reload"),
+    hl.dsp.exec_cmd("padilha-reload"),
     release
 )
 
@@ -193,17 +193,17 @@ create_bind("SUPER + B", hl.dsp.exec_cmd(vars.browser))
 create_bind("XF86Calculator", hl.dsp.exec_cmd("galculator"))
 
 -- Utilities
-create_bind(vars.kbScreenshot, hl.dsp.exec_cmd("lilith-shot"), locked)
+create_bind(vars.kbScreenshot, hl.dsp.exec_cmd("padilha-shot"), locked)
 create_bind(vars.kbScreenshotFreeze, hl.dsp.global("caelestia:screenshotFreeze"))
 create_bind(vars.kbScreenshotRegion, hl.dsp.global("caelestia:screenshot"))
-create_bind(vars.kbRecord, hl.dsp.exec_cmd("lilith-record"))
-create_bind(vars.kbRecordSound, hl.dsp.exec_cmd("lilith-record -s"))
-create_bind(vars.kbRecordRegion, hl.dsp.exec_cmd("lilith-record -r"))
+create_bind(vars.kbRecord, hl.dsp.exec_cmd("padilha-record"))
+create_bind(vars.kbRecordSound, hl.dsp.exec_cmd("padilha-record -s"))
+create_bind(vars.kbRecordRegion, hl.dsp.exec_cmd("padilha-record -r"))
 create_bind(vars.kbColorPicker, hl.dsp.exec_cmd("hyprpicker -a"))
 
 -- Handy extras
 create_bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))
-create_bind("SUPER + SHIFT + 4", hl.dsp.exec_cmd("lilith-shot -r"))
+create_bind("SUPER + SHIFT + 4", hl.dsp.exec_cmd("padilha-shot -r"))
 create_bind("XF86Search", hl.dsp.global("caelestia:launcher"))
 
 -- Brightness
@@ -239,9 +239,9 @@ create_bind(
 create_bind(vars.kbSleep, hl.dsp.exec_cmd(vars.sleepGestureCmd), locked)
 
 -- Clipboard and emoji picker
-create_bind(vars.kbClipboard, hl.dsp.exec_cmd("pkill fuzzel || lilith-clipboard"))
-create_bind(vars.kbClipboardDel, hl.dsp.exec_cmd("pkill fuzzel || lilith-clipboard -d"))
-create_bind(vars.kbEmoji, hl.dsp.exec_cmd("pkill fuzzel || lilith-emoji -p"))
+create_bind(vars.kbClipboard, hl.dsp.exec_cmd("pkill fuzzel || padilha-clipboard"))
+create_bind(vars.kbClipboardDel, hl.dsp.exec_cmd("pkill fuzzel || padilha-clipboard -d"))
+create_bind(vars.kbEmoji, hl.dsp.exec_cmd("pkill fuzzel || padilha-emoji -p"))
 create_bind(
     vars.kbClipboardPasteLatest,
     hl.dsp.exec_cmd('sleep 0.5s && ydotool type -d 1 "$(cliphist list | head -1 | cliphist decode)"'),

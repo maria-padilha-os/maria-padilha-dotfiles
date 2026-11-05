@@ -1,18 +1,18 @@
-/* Lilith - Firefox browser chrome.
+/* Maria Padilha - Firefox browser chrome.
  *
  * The palette is not in this file: chrome/lilith.css is generated from the
- * current Material You scheme by `lilith-theme apply` and feeds the
+ * current Material You scheme by `padilha-theme apply` and feeds the
  * --lilith-* custom properties used below. Changing the wallpaper is enough
  * to repaint Firefox; restart Firefox to pick up a new lilith.css.
  *
- * Install with `lilith-dots firefox` after Firefox has been launched once.
+ * Install with `padilha-dots firefox` after Firefox has been launched once.
  * user.js turns on toolkit.legacyUserProfileCustomizations.stylesheets, which
  * is what makes Firefox load this sheet at all.
  */
 
 @import url("lilith.css");
 
-/* Fallbacks until the first `lilith-theme apply` writes chrome/lilith.css.
+/* Fallbacks until the first `padilha-theme apply` writes chrome/lilith.css.
  * The generated :root has higher specificity than :where(:root), so these
  * values are ignored as soon as the palette exists. They match the palette
  * tracked in hypr/scheme/current.lua. */
