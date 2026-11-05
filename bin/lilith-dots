@@ -39,7 +39,7 @@ firefox_from_ini() {
         function trim(s) { sub(/^[ \t\r]+/, "", s); sub(/[ \t\r]+$/, "", s); return s }
         /^[ \t]*\[/ {
             if (section ~ /^\[Profile/ && profile_path != "") {
-                print (profile_default ? "1" : "3") "|" profile_path
+                print (profile_default ? "2" : "3") "|" profile_path
             }
             section = trim($0)
             profile_path = ""
@@ -55,12 +55,12 @@ firefox_from_ini() {
                 if (key == "path") profile_path = val
                 else if (key == "default") profile_default = (val != "" && val != "0")
             } else if (section ~ /^\[Install/ && key == "default") {
-                print "2|" val
+                print "1|" val
             }
         }
         END {
             if (section ~ /^\[Profile/ && profile_path != "") {
-                print (profile_default ? "1" : "3") "|" profile_path
+                print (profile_default ? "2" : "3") "|" profile_path
             }
         }
     ' "$ff_ini" | sort -n -t'|' -k1,1)
@@ -88,6 +88,13 @@ find_firefox_profile() {
         return 0
     fi
     [ -n "${HOME:-}" ] || return 0
+    # Newer Firefox builds (and some distro configs) keep profiles under
+    # XDG_CONFIG_HOME instead of ~/.mozilla.
+    ff_found=$(firefox_from_ini "${XDG_CONFIG_HOME:-$HOME/.config}/mozilla/firefox")
+    if [ -n "$ff_found" ]; then
+        printf '%s\n' "$ff_found"
+        return 0
+    fi
     ff_found=$(firefox_from_ini "$HOME/.mozilla/firefox")
     if [ -n "$ff_found" ]; then
         printf '%s\n' "$ff_found"
