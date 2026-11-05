@@ -17,8 +17,12 @@ map("n",             "<F3>",  "<cmd> w <CR>",                                   
 map("n",             "lç",    "<cmd> w <CR>",                                       {desc = "General ﬚  save file" })
 map("n",             "<F2>",  "<cmd> qa <CR>",                                      {desc = "General close all files"})
 map("n",             "<F4>",  "<cmd> q <CR>",                                       {desc = "General quit" })
-map("n",             "<A-ç>", "<cmd> q <CR>",                                       {desc = "General ﬚  save file"})
+map("n",             "<A-ç>", "<cmd> q <CR>",                                       {desc = "General quit"})
 map("t",             "<A-ç>", replace("<C-c> exit<CR> exit<CR><C-\\><C-N>:q<CR>", true, true, true), { desc = "Term close term" })
+-- WezTerm translates Alt+ç to F13: Neovim 0.12's kitty-protocol input no
+-- longer matches <A-ç> for a non-ASCII chord (foot's encoding used to).
+map("n",             "<F13>", "<cmd> q <CR>",                                       {desc = "General quit"})
+map("t",             "<F13>", replace("<C-c> exit<CR> exit<CR><C-\\><C-N>:q<CR>", true, true, true), { desc = "Term close term" })
 map("n",             "<F9>", "<cmd> source Session.vim <CR>",                       {desc = "General load session" })
 map("n",             "ç",     "<cmd> :lua vim.diagnostic.open_float() <CR>",        {desc = "General show floating diagnostics"})
 map({"n", "v"},      "\\",    "<C-\\><C-N>:NvimTreeToggle<CR>",                     {desc = "General toggle nvim-tree"})

@@ -70,6 +70,14 @@ config.colors = {
     },
 }
 
+-- Neovim 0.12 asks for the kitty keyboard protocol, and Alt+<non-ASCII> now
+-- arrives in a form its <A-ç> mapping no longer matches (foot's ESC+UTF-8
+-- encoding used to work). Translate the chord to F13, which nvim maps to quit
+-- in normal mode and to close the terminal buffer in terminal mode.
+config.keys = {
+    { key = 'ç', mods = 'ALT', action = wezterm.action.SendKey { key = 'F13' } },
+}
+
 -- Matches foot: JetBrains Mono 12, 25px of padding, no decorations, and mc on
 -- top of fish (F10 quits mc into the shell in the same window).
 config.font = wezterm.font_with_fallback { 'JetBrains Mono Nerd Font', 'Noto Color Emoji' }
