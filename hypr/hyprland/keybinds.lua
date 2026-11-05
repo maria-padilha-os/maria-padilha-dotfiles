@@ -74,6 +74,7 @@ create_bind(vars.kbExtensionTranslator, hl.dsp.global("caelestia:extensionTransl
 create_bind(vars.kbExtensionCalculator, hl.dsp.global("caelestia:extensionCalculator"))
 create_bind(vars.kbExtensionMaps, hl.dsp.global("caelestia:extensionMaps"))
 create_bind(vars.kbExtensionTuner, hl.dsp.global("caelestia:extensionTuner"))
+create_bind(vars.kbExtensionFiles, hl.dsp.global("caelestia:extensionFiles"))
 create_bind(vars.kbLock, hl.dsp.global("caelestia:lock"))
 
 -- Restore lock

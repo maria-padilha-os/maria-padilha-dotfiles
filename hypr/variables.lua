@@ -150,6 +150,7 @@ return {
     kbExtensionCalculator      = "SUPER + ALT + C",
     kbExtensionMaps            = "SUPER + ALT + O",
     kbExtensionTuner           = "SUPER + ALT + G",
+    kbExtensionFiles           = "SUPER + ALT + E",
     kbLock                     = "SUPER + Escape",
     kbRestoreLock              = "SUPER + ALT + Escape",
     kbSleep                    = "SUPER + SHIFT + Escape",
