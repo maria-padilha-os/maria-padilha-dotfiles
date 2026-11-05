@@ -24,6 +24,10 @@ map("t",             "<A-ç>", replace("<C-c> exit<CR> exit<CR><C-\\><C-N>:q<CR>
 -- longer matches <A-ç> for a non-ASCII chord (foot's encoding used to).
 map("n",             "<F13>", "<cmd> q <CR>",                                       {desc = "General quit"})
 map("t",             "<F13>", replace("<C-c> exit<CR> exit<CR><C-\\><C-N>:q<CR>", true, true, true), { desc = "Term close term" })
+-- Alt+<ASCII> still reaches Neovim under NvChad on 0.12; Alt+ç is swallowed by
+-- the current config stack, so this is the working close shortcut for now.
+map("n",             "<A-q>", "<cmd> q <CR>",                                       {desc = "General quit"})
+map("t",             "<A-q>", replace("<C-c> exit<CR> exit<CR><C-\\><C-N>:q<CR>", true, true, true), { desc = "Term close term" })
 map("n",             "<F9>", "<cmd> source Session.vim <CR>",                       {desc = "General load session" })
 map("n",             "ç",     "<cmd> :lua vim.diagnostic.open_float() <CR>",        {desc = "General show floating diagnostics"})
 map({"n", "v"},      "\\",    "<C-\\><C-N>:NvimTreeToggle<CR>",                     {desc = "General toggle nvim-tree"})
