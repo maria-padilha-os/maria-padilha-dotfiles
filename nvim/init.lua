@@ -5,6 +5,12 @@ vim.g.mapleader = " "
 -- Set this to false to keep NvChad's selected base46 theme instead.
 vim.g.caelestia_colorscheme = true
 
+-- WezTerm already paints the wallpaper-derived surface at 0.85 opacity. Let
+-- that show through Normal so nvim and the terminal have the same background;
+-- base46's own transparency stays off, because its dark themes would become
+-- unreadable on the light daytime terminal.
+vim.g.caelestia_transparent = true
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 

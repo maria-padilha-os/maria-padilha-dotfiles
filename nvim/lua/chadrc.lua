@@ -11,11 +11,11 @@ local options = {
     -- 	["@comment"] = { italic = true },
     -- },
     theme_toggle = { "ayu_dark", "ayu_dark" },
-    -- ayu_dark is a dark theme with light text. The terminal now follows the
-    -- wallpaper (white during the day), so a transparent Normal made the text
-    -- almost unreadable. Keep base46 themes opaque; the caelestia colorscheme
-    -- has its own transparency setting.
-    transparency = false,
+    -- Every Neovim surface follows the terminal surface, including its opacity.
+    -- An opaque Normal looked like a different colour next to WezTerm. If you
+    -- fall back to base46 ayu_dark on the light daytime terminal, expect light
+    -- text over it: switch the theme or the terminal setting in that case.
+    transparency = true,
   },
 
   -- nvdash = { load_on_startup = true },

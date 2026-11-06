@@ -1,3 +1,8 @@
+> Maria Padilha note: this config uses the palette-following `caelestia`
+> colorscheme. Neovim's `Normal` background is intentionally transparent (both
+> `caelestia_transparent` and base46 transparency) so it always matches the
+> WezTerm surface and its 0.85 opacity; the terminal supplies the colour.
+
 **This repo is supposed to be used as config by NvChad users!**
 
 - The main nvchad repo (NvChad/NvChad) is used as a plugin by this repo.
