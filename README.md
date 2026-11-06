@@ -44,11 +44,11 @@ so on a fresh machine move the existing config aside once and run it.
 | ![Maria Padilha desktop at day](assets/screenshots/desktop-day.webp) | ![Maria Padilha desktop at night](assets/screenshots/desktop-night.webp) |
 | ![Launcher over the wallpaper](assets/screenshots/launcher.webp) | ![Dashboard panels](assets/screenshots/dashboard.webp) |
 
-![Day and night palette transition](assets/screenshots/palette.gif)
 
 The screenshots are from the Maria Padilha shell and Hyprland configuration in
-this repository; the night view is the night palette preview, and the GIF is
-generated from the day/night stills.
+this repository; the night view is the night palette preview. More demos,
+including the deskbar widgets and dashboard tabs, are on the
+[screenshots page](https://maria-padilha-os.github.io/maria-padilha-de/screenshots.html).
 
 Local-only files are ignored rather than committed:
 
