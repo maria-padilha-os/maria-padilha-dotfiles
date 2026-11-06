@@ -125,7 +125,21 @@ map({ "n", "t", "i" },      "<A-:>", mterm("vsp",   "v"),                       
 -- AI
 -- NB: call the binary, not the `dsh-tui` shell alias: nvim terminals run
 -- `&shell -c`, which never sources .zshrc/.bashrc, so aliases don't exist there.
-map("n", "<leader>ld", mterm("float", "4", "dsh --profile dsh-tui . && exit"), { desc = "dsh-tui"  })
+-- DSH asks the terminal for its background (OSC 11). Neovim's embedded
+-- terminal does not answer, so DSH falls back to its dark palette and its
+-- light text disappears on the light wallpaper surface. Select the matching
+-- built-in theme explicitly from the current caelestia mode.
+local dsh_tui = function ()
+  local mode = "light"
+  local ok, lines = pcall(vim.fn.readfile, vim.fs.normalize "~/.local/state/caelestia/scheme.json")
+  if ok then
+    local found = table.concat(lines, "\n"):match('"mode"%s*:%s*"([^"]+)"')
+    if found == "dark" then mode = "dark" end
+  end
+  return ("DSH_TUI_THEME=%s dsh --profile dsh-tui . && exit"):format(mode)
+end
+
+map("n", "<leader>ld", mterm("float", "4", dsh_tui), { desc = "dsh-tui"  })
 map("n", "<leader>lq", mterm("float", "4", "qwen && exit"     ), { desc = "quencode"   })
 
 -- cli apps

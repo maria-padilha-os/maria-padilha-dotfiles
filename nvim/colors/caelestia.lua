@@ -76,6 +76,12 @@ local function apply(p, mode)
     vim.o.background = mode or "dark"
     vim.g.colors_name = "caelestia"
 
+    -- DSH asks its terminal for the background (OSC 11). Neovim's embedded
+    -- terminal does not answer, so its auto theme falls back to dark; pass the
+    -- matching built-in palette to child terminals instead.
+    vim.g.caelestia_dsh_theme = (mode == "dark") and "dark" or "light"
+    vim.env.DSH_TUI_THEME = vim.g.caelestia_dsh_theme
+
     local transparent = vim.g.caelestia_transparent == true
     local bg = transparent and "NONE" or p.surface
     local container_bg = transparent and "NONE" or p.surfaceContainer

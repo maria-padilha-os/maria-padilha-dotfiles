@@ -8,6 +8,14 @@
 Defold's project build runs on `<F5>` and the no-build relaunch on `<F6>`.
 Backspace is not mapped, so it keeps Neovim's normal cursor movement.
 
+## DSH theme
+
+DSH normally detects light/dark through the terminal's OSC 11 reply, which
+Neovim's embedded terminal does not provide. The colorscheme exports
+`DSH_TUI_THEME` from the current caelestia mode, and the `<leader>ld` mapping
+also sets it at launch, so DSH uses the readable light or dark palette instead
+of falling back to light text on a light surface.
+
 **This repo is supposed to be used as config by NvChad users!**
 
 - The main nvchad repo (NvChad/NvChad) is used as a plugin by this repo.
