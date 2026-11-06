@@ -42,7 +42,7 @@ so on a fresh machine move the existing config aside once and run it.
 | Day | Night |
 | --- | --- |
 | ![Maria Padilha desktop at day](assets/screenshots/desktop-day.webp) | ![Maria Padilha desktop at night](assets/screenshots/desktop-night.webp) |
-| ![Launcher over the wallpaper](assets/screenshots/launcher.webp) | ![Dashboard over a Neovim buffer](assets/screenshots/dashboard.webp) |
+| ![Launcher over the wallpaper](assets/screenshots/launcher.webp) | ![Dashboard panels](assets/screenshots/dashboard.webp) |
 
 ![Day and night palette transition](assets/screenshots/palette.gif)
 
@@ -60,3 +60,7 @@ The Hyprland config calls `padilha-session` from the separate
 `maria-padilha-de` checkout (installed in `/usr/bin`, or a sibling
 `../maria-padilha-de/bin`). The legacy `lilith-*` commands remain as
 compatibility aliases during the transition.
+
+## License
+
+GPL-3.0-only. See [LICENSE](LICENSE).
