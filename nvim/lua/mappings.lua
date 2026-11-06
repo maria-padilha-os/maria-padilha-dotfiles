@@ -144,5 +144,5 @@ local defold = function (args)
   end
 end
 
-map("n", "<BS>",   mterm("float", "1", defold ""),           { desc = "defold build & run" })
-map("n", "<A-BS>", mterm("float", "1", defold "--no-build"), { desc = "defold relaunch"     })
+map("n", "<F5>", mterm("float", "1", defold ""),           { desc = "defold build & run" })
+map("n", "<F6>", mterm("float", "1", defold "--no-build"), { desc = "defold relaunch"     })
