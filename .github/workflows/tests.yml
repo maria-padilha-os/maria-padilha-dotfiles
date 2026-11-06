@@ -1,0 +1,34 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dotfiles-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: dotfiles checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container:
+      image: archlinux:latest
+    steps:
+      - name: Install the test runtime
+        run: |
+          pacman-key --init
+          pacman-key --populate archlinux
+          pacman -Syu --noconfirm --needed \
+            ca-certificates git lua python shellcheck
+
+      - uses: actions/checkout@v7.0.1
+
+      - name: Run the dotfiles checks
+        run: tests/ci.sh

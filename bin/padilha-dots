@@ -21,7 +21,7 @@
 set -eu
 
 self=$(readlink -f -- "$0" 2>/dev/null || printf '%s' "$0")
-root=$(CDPATH= cd -- "$(dirname -- "$self")/.." && pwd)
+root=$(CDPATH='' cd -- "$(dirname -- "$self")/.." && pwd)
 config="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 names=${*:-"hypr nvim wezterm mc firefox micro"}
