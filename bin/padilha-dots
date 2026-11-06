@@ -81,9 +81,12 @@ EOF
 }
 
 find_firefox_profile() {
-    if [ -n "${LILITH_FIREFOX_PROFILE_DIR:-}" ]; then
-        if [ -d "$LILITH_FIREFOX_PROFILE_DIR" ]; then
-            printf '%s\n' "$LILITH_FIREFOX_PROFILE_DIR"
+    # Keep the new name primary and the pre-rename name accepted, exactly like
+    # the theme engine's PADILHA_FIREFOX_PROFILE_DIR / LILITH_... lookup.
+    ff_override=${PADILHA_FIREFOX_PROFILE_DIR:-${LILITH_FIREFOX_PROFILE_DIR:-}}
+    if [ -n "$ff_override" ]; then
+        if [ -d "$ff_override" ]; then
+            printf '%s\n' "$ff_override"
         fi
         return 0
     fi

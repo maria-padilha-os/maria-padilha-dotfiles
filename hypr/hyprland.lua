@@ -2,11 +2,49 @@ local home   = os.getenv("HOME")
 local hypr   = home .. "/.config/hypr"
 
 -- User config lives in ~/.config/padilha. The pre-rename ~/.config/lilith is
--- read instead only while the padilha directory does not exist, and
--- PADILHA_CONFIG / LILITH_CONFIG override either directory.
+-- read instead only while the padilha directory does not exist.
+--
+-- PADILHA_CONFIG_DIR / LILITH_CONFIG_DIR name a directory. The older
+-- PADILHA_CONFIG / LILITH_CONFIG variables are shared with the shell, whose
+-- session exports the *compiler executable* under that name; only accept them
+-- here when they really point at a directory.
 local xdg_config = os.getenv("XDG_CONFIG_HOME") or (home .. "/.config")
-local config_dir = os.getenv("PADILHA_CONFIG") or (xdg_config .. "/padilha")
-local legacy_config_dir = os.getenv("LILITH_CONFIG") or (xdg_config .. "/lilith")
+
+local function quote(s)
+    return "'" .. tostring(s):gsub("'", "'\\''") .. "'"
+end
+
+local function is_dir(path)
+    if path == nil or path == "" then
+        return false
+    end
+    -- io.popen is already used elsewhere in this config; os.execute return
+    -- conventions differ between Lua builds, so keep the check explicit.
+    local ok, handle = pcall(io.popen, "test -d " .. quote(path) .. " && printf yes")
+    if not ok or not handle then
+        return false
+    end
+    local out = handle:read("*l")
+    handle:close()
+    return out == "yes"
+end
+
+local function config_home(name, legacy_name)
+    local explicit = os.getenv(name)
+    if is_dir(explicit) then
+        return explicit
+    end
+    local legacy = os.getenv(legacy_name)
+    if is_dir(legacy) then
+        return legacy
+    end
+    return nil
+end
+
+local config_dir = config_home("PADILHA_CONFIG_DIR", "PADILHA_CONFIG")
+    or (xdg_config .. "/padilha")
+local legacy_config_dir = config_home("LILITH_CONFIG_DIR", "LILITH_CONFIG")
+    or (xdg_config .. "/lilith")
 
 local function exists(path)
     local f = io.open(path, "r")

@@ -139,10 +139,11 @@ true-colour hex values). Two copies exist by design:
   `padilha-theme apply` from `maria-padilha-de/share/templates/micro.micro` and follows
   every wallpaper/palette change.
 
-Add the app entry to `maria-padilha-de/lib/apply.lua` (see the integration report) with
-`hash = true`; the template writes bare `rrggbb` placeholders and the engine
-adds `#`. After a palette change, micro picks the colours up on restart (or
-`Ctrl-e` → `set colorscheme padilha`).
+The engine entry is already in `maria-padilha-de/lib/apply.lua` (`id = "micro"`,
+destination `micro/colorschemes/padilha.micro`, `hash = true`); the template
+writes bare `rrggbb` placeholders and the engine adds `#`. After a palette
+change, micro picks the colours up on restart (or `Ctrl-e` →
+`set colorscheme padilha`).
 
 The syntax colours mirror `nvim/colors/caelestia.lua`: comments use
 `onSurfaceVariant`, strings `green`, numbers/constants `peach`, keywords
