@@ -152,7 +152,6 @@ return {
     kbExtensionTuner           = "SUPER + ALT + G",
     kbExtensionFiles           = "SUPER + ALT + E",
     kbLock                     = "SUPER + Escape",
-    kbRestoreLock              = "SUPER + ALT + Escape",
     kbSleep                    = "SUPER + SHIFT + Escape",
 
     -- Clipboard and emoji picker
