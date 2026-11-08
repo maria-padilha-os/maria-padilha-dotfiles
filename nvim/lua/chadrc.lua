@@ -5,12 +5,12 @@
 ---@type ChadrcConfig
 local options = {
   base46 = {
-    theme = "ayu_dark",
+    theme = "caelestia",
     -- hl_override = {
     -- 	Comment = { italic = true },
     -- 	["@comment"] = { italic = true },
     -- },
-    theme_toggle = { "ayu_dark", "ayu_dark" },
+    theme_toggle = { "caelestia", "caelestia" },
     -- Every Neovim surface follows the terminal surface, including its opacity.
     -- An opaque Normal looked like a different colour next to WezTerm. If you
     -- fall back to base46 ayu_dark on the light daytime terminal, expect light
