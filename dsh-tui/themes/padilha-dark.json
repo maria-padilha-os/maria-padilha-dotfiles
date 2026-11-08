@@ -1,0 +1,31 @@
+{
+  "name": "padilha-dark",
+  "displayName": "Maria Padilha Dark",
+  "base": "dark",
+  "colors": {
+    "accent": "ansi:red",
+    "accentShimmer": "ansi:redBright",
+    "activity": "ansi:cyan",
+    "activityShimmer": "ansi:cyanBright",
+    "text": "ansi:white",
+    "inverseText": "ansi:black",
+    "inactive": "ansi:whiteBright",
+    "subtle": "ansi:whiteBright",
+    "promptBorder": "ansi:red",
+    "promptBorderShimmer": "ansi:redBright",
+    "success": "ansi:green",
+    "error": "ansi:red",
+    "warning": "ansi:yellow",
+    "merged": "ansi:magenta",
+    "syntaxKeyword": "ansi:red",
+    "syntaxString": "ansi:green",
+    "syntaxComment": "ansi:whiteBright",
+    "syntaxNumber": "ansi:magenta",
+    "syntaxFunction": "ansi:blue",
+    "syntaxType": "ansi:yellow",
+    "syntaxVariable": "ansi:white",
+    "syntaxOperator": "ansi:red",
+    "syntaxPunctuation": "ansi:whiteBright",
+    "syntaxConstant": "ansi:magenta"
+  }
+}

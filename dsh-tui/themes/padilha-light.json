@@ -1,0 +1,31 @@
+{
+  "name": "padilha-light",
+  "displayName": "Maria Padilha Light",
+  "base": "light",
+  "colors": {
+    "accent": "ansi:red",
+    "accentShimmer": "ansi:redBright",
+    "activity": "ansi:cyan",
+    "activityShimmer": "ansi:cyanBright",
+    "text": "ansi:black",
+    "inverseText": "ansi:white",
+    "inactive": "ansi:blackBright",
+    "subtle": "ansi:blackBright",
+    "promptBorder": "ansi:red",
+    "promptBorderShimmer": "ansi:redBright",
+    "success": "ansi:green",
+    "error": "ansi:red",
+    "warning": "ansi:yellow",
+    "merged": "ansi:magenta",
+    "syntaxKeyword": "ansi:red",
+    "syntaxString": "ansi:green",
+    "syntaxComment": "ansi:blackBright",
+    "syntaxNumber": "ansi:magenta",
+    "syntaxFunction": "ansi:blue",
+    "syntaxType": "ansi:yellow",
+    "syntaxVariable": "ansi:black",
+    "syntaxOperator": "ansi:red",
+    "syntaxPunctuation": "ansi:blackBright",
+    "syntaxConstant": "ansi:magenta"
+  }
+}

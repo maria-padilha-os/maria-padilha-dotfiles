@@ -343,6 +343,24 @@ for name in $names; do
         continue
     fi
 
+    if [ "$name" = dsh-tui ]; then
+        src="$root/dsh-tui/themes"
+        dst="${HOME}/.dsh-tui/themes"
+        if [ ! -d "$src" ]; then
+            echo "padilha-dots: missing $src" >&2
+            exit 1
+        fi
+        if [ -e "$dst" ] && [ ! -L "$dst" ]; then
+            backup="$dst.pre-padilha-$(date +%Y%m%d-%H%M%S)"
+            echo "padilha-dots: backing up $dst -> $backup" >&2
+            mv "$dst" "$backup"
+        fi
+        mkdir -p "${HOME}/.dsh-tui"
+        ln -sfn "$src" "$dst"
+        printf '%s -> %s\n' "$dst" "$src"
+        continue
+    fi
+
     if [ "$name" = btop ]; then
         src="$root/btop/btop.conf"
         dst="$config/btop/btop.conf"
