@@ -10,6 +10,7 @@ profile:
 | `nvim` | `~/.config/nvim` |
 | `wezterm` | `~/.config/wezterm` |
 | `btop/btop.conf` | `~/.config/btop/btop.conf` (the generated theme stays local) |
+| `thunderbird/user.js`, `thunderbird/chrome/*` | the selected Thunderbird profile (generated `padilha.css` stays in the profile) |
 | `mc/ini`, `mc/mc.keymap`, `mc/mc.ext.ini` | the same names under `~/.config/mc` |
 | `firefox/user.js` | copied into the default Firefox profile |
 | `firefox/chrome/*.css` | linked into `<profile>/chrome/` |

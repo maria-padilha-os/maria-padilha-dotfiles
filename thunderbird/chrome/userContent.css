@@ -1,0 +1,13 @@
+/* Maria Padilha Thunderbird message content. */
+@import url("padilha.css");
+
+#messagepane,
+#messageEditor,
+#attachmentView {
+    background-color: var(--padilha-surface) !important;
+    color: var(--padilha-on-surface) !important;
+}
+
+#messageEditor {
+    border-color: var(--padilha-outline-variant) !important;
+}

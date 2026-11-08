@@ -4,7 +4,7 @@
 # On a fresh machine, move any existing real directories aside first; this
 # script refuses to overwrite them.
 #
-#   padilha-dots             link hypr, nvim, wezterm, mc, btop and Firefox
+#   padilha-dots             link hypr, nvim, wezterm, mc, btop, Thunderbird and Firefox
 #   padilha-dots hypr        link only the Hyprland config
 #   padilha-dots mc          install only the Midnight Commander files
 #   padilha-dots firefox     install into the detected Firefox profile
@@ -24,7 +24,7 @@ self=$(readlink -f -- "$0" 2>/dev/null || printf '%s' "$0")
 root=$(CDPATH='' cd -- "$(dirname -- "$self")/.." && pwd)
 config="${XDG_CONFIG_HOME:-$HOME/.config}"
 
-names=${*:-"hypr nvim wezterm mc firefox micro btop"}
+names=${*:-"hypr nvim wezterm mc thunderbird firefox micro btop"}
 
 mkdir -p "$config"
 
@@ -192,6 +192,87 @@ install_firefox() {
         echo "padilha-dots: note: $ff_chrome/lilith.css is missing; run 'padilha-theme apply --wallpaper ...' to generate the palette." >&2
     fi
 }
+# --- Thunderbird ---------------------------------------------------------
+find_thunderbird_profile() {
+    tb_override=${PADILHA_THUNDERBIRD_PROFILE_DIR:-${LILITH_THUNDERBIRD_PROFILE_DIR:-}}
+    if [ -n "$tb_override" ]; then
+        if [ -d "$tb_override" ]; then
+            printf '%s\n' "$tb_override"
+        fi
+        return 0
+    fi
+    [ -n "${HOME:-}" ] || return 0
+    for tb_root in \
+        "${XDG_CONFIG_HOME:-$HOME/.config}/thunderbird" \
+        "$HOME/.thunderbird" \
+        "$HOME/.var/app/org.mozilla.Thunderbird/.thunderbird" \
+        "$HOME/snap/thunderbird/common/.thunderbird"
+    do
+        tb_found=$(firefox_from_ini "$tb_root")
+        if [ -n "$tb_found" ]; then
+            printf '%s\n' "$tb_found"
+            return 0
+        fi
+    done
+    return 0
+}
+
+install_thunderbird() {
+    tb_src=$root/thunderbird
+    if [ ! -d "$tb_src" ]; then
+        echo "padilha-dots: missing $tb_src" >&2
+        exit 1
+    fi
+    tb_profile=$(find_thunderbird_profile)
+    if [ -z "$tb_profile" ]; then
+        echo "padilha-dots: no Thunderbird profile yet; launch Thunderbird once, quit it, then run 'padilha-dots thunderbird'." >&2
+        return 0
+    fi
+    tb_chrome=$tb_profile/chrome
+    mkdir -p "$tb_chrome"
+
+    tb_userjs=$tb_profile/user.js
+    if [ -e "$tb_userjs" ] || [ -L "$tb_userjs" ]; then
+        if [ -L "$tb_userjs" ]; then
+            rm -f "$tb_userjs"
+        elif ! cmp -s "$tb_src/user.js" "$tb_userjs"; then
+            tb_backup=$tb_userjs.pre-padilha-$(date +%Y%m%d-%H%M%S)
+            echo "padilha-dots: backing up $tb_userjs -> $tb_backup" >&2
+            mv "$tb_userjs" "$tb_backup"
+        fi
+    fi
+    cp "$tb_src/user.js" "$tb_userjs"
+    printf '%s (copy)\n' "$tb_userjs"
+
+    for tb_name in userChrome.css userContent.css; do
+        tb_src_file=$tb_src/chrome/$tb_name
+        tb_dst_file=$tb_chrome/$tb_name
+        if [ ! -f "$tb_src_file" ]; then
+            echo "padilha-dots: missing $tb_src_file" >&2
+            exit 1
+        fi
+        if [ -e "$tb_dst_file" ] || [ -L "$tb_dst_file" ]; then
+            tb_existing=$(readlink -f -- "$tb_dst_file" 2>/dev/null || true)
+            tb_wanted=$(readlink -f -- "$tb_src_file" 2>/dev/null || true)
+            if [ -n "$tb_existing" ] && [ "$tb_existing" = "$tb_wanted" ]; then
+                :
+            elif [ -L "$tb_dst_file" ]; then
+                rm -f "$tb_dst_file"
+            else
+                tb_backup=$tb_dst_file.pre-padilha-$(date +%Y%m%d-%H%M%S)
+                echo "padilha-dots: backing up $tb_dst_file -> $tb_backup" >&2
+                mv "$tb_dst_file" "$tb_backup"
+            fi
+        fi
+        ln -sfn "$tb_src_file" "$tb_dst_file"
+        printf '%s -> %s\n' "$tb_dst_file" "$tb_src_file"
+    done
+
+    if [ ! -f "$tb_chrome/padilha.css" ]; then
+        echo "padilha-dots: note: $tb_chrome/padilha.css is missing; run 'padilha-theme apply --wallpaper ...' to generate the palette." >&2
+    fi
+}
+
 # -------------------------------------------------------------------------
 
 for name in $names; do
@@ -231,6 +312,11 @@ for name in $names; do
             ln -sfn "$src" "$dst"
             printf '%s -> %s\n' "$dst" "$src"
         done
+        continue
+    fi
+
+    if [ "$name" = thunderbird ]; then
+        install_thunderbird
         continue
     fi
 
