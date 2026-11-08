@@ -42,6 +42,7 @@ dofile(vim.g.base46_cache .. "statusline")
 require "options"
 require "autocmds"
 require "sessions"
+require("caelestia_theme_picker").setup()
 
 vim.schedule(function()
   require "mappings"
