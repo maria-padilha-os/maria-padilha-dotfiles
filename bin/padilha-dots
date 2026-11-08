@@ -4,7 +4,7 @@
 # On a fresh machine, move any existing real directories aside first; this
 # script refuses to overwrite them.
 #
-#   padilha-dots             link hypr, nvim, wezterm, mc and Firefox
+#   padilha-dots             link hypr, nvim, wezterm, mc, btop and Firefox
 #   padilha-dots hypr        link only the Hyprland config
 #   padilha-dots mc          install only the Midnight Commander files
 #   padilha-dots firefox     install into the detected Firefox profile
@@ -24,7 +24,7 @@ self=$(readlink -f -- "$0" 2>/dev/null || printf '%s' "$0")
 root=$(CDPATH='' cd -- "$(dirname -- "$self")/.." && pwd)
 config="${XDG_CONFIG_HOME:-$HOME/.config}"
 
-names=${*:-"hypr nvim wezterm mc firefox micro"}
+names=${*:-"hypr nvim wezterm mc firefox micro btop"}
 
 mkdir -p "$config"
 
@@ -236,6 +236,24 @@ for name in $names; do
 
     if [ "$name" = firefox ]; then
         install_firefox
+        continue
+    fi
+
+    if [ "$name" = btop ]; then
+        src="$root/btop/btop.conf"
+        dst="$config/btop/btop.conf"
+        if [ ! -f "$src" ]; then
+            echo "padilha-dots: missing $src" >&2
+            exit 1
+        fi
+        mkdir -p "$config/btop"
+        if [ -e "$dst" ] && [ ! -L "$dst" ]; then
+            backup="$dst.pre-padilha-$(date +%Y%m%d-%H%M%S)"
+            echo "padilha-dots: backing up $dst -> $backup" >&2
+            mv "$dst" "$backup"
+        fi
+        ln -sfn "$src" "$dst"
+        printf '%s -> %s\n' "$dst" "$src"
         continue
     fi
 
