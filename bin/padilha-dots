@@ -24,7 +24,7 @@ self=$(readlink -f -- "$0" 2>/dev/null || printf '%s' "$0")
 root=$(CDPATH='' cd -- "$(dirname -- "$self")/.." && pwd)
 config="${XDG_CONFIG_HOME:-$HOME/.config}"
 
-names=${*:-"hypr nvim wezterm mc thunderbird firefox micro btop"}
+names=${*:-"hypr nvim wezterm lazygit mc thunderbird firefox micro btop"}
 
 mkdir -p "$config"
 
@@ -322,6 +322,24 @@ for name in $names; do
 
     if [ "$name" = firefox ]; then
         install_firefox
+        continue
+    fi
+
+    if [ "$name" = lazygit ]; then
+        src="$root/lazygit/config.yml"
+        dst="$config/lazygit/config.yml"
+        if [ ! -f "$src" ]; then
+            echo "padilha-dots: missing $src" >&2
+            exit 1
+        fi
+        mkdir -p "$config/lazygit"
+        if [ -e "$dst" ] && [ ! -L "$dst" ]; then
+            backup="$dst.pre-padilha-$(date +%Y%m%d-%H%M%S)"
+            echo "padilha-dots: backing up $dst -> $backup" >&2
+            mv "$dst" "$backup"
+        fi
+        ln -sfn "$src" "$dst"
+        printf '%s -> %s\n' "$dst" "$src"
         continue
     fi
 

@@ -1,0 +1,29 @@
+# Maria Padilha lazygit theme.
+#
+# Uses the terminal's ANSI palette, which padilha-theme rewrites with the
+# current light/dark scheme. That keeps lazygit in sync without regenerating a
+# separate hex config on every wallpaper change.
+gui:
+  theme:
+    activeBorderColor:
+      - red
+      - bold
+    inactiveBorderColor:
+      - default
+    searchingActiveBorderColor:
+      - magenta
+      - bold
+    optionsTextColor:
+      - red
+    selectedLineBgColor:
+      - magenta
+    selectedRangeBgColor:
+      - blue
+    cherryPickedCommitBgColor:
+      - cyan
+    cherryPickedCommitFgColor:
+      - default
+    unstagedChangesColor:
+      - red
+    defaultFgColor:
+      - default
