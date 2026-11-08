@@ -91,23 +91,53 @@ local free_area_float = function ()
   }
 end
 
+local function term_entry(id)
+  for _, entry in pairs(vim.g.nvchad_terms or {}) do
+    if entry.id == id then
+      return entry
+    end
+  end
+end
+
 local mterm = function (pos, id, cmd)
   return function ()
     -- cmd may be a function so the command can be built at press time (e.g.
     -- from the current project root) instead of once at startup.
     local command = type(cmd) == "function" and cmd() or cmd
+    local before = term_entry(id)
+    local was_visible = before and vim.fn.bufwinid(before.buf) ~= -1
+    local opts = { pos = pos, id = id, cmd = command }
 
     if id == "1" then
-      term.toggle { pos = pos, id = id, cmd = command, float_opts = { width = 1.0, height = 0.33, row = 0.7 } }
+      opts.float_opts = { width = 1.0, height = 0.33, row = 0.7 }
     elseif id == "2" then
-      term.toggle { pos = pos, id = id, cmd = command, float_opts = { width = 0.75, height = 0.66, col = 0.25 } }
+      opts.float_opts = { width = 0.75, height = 0.66, col = 0.25 }
     elseif id == "3" then
-      term.toggle { pos = pos, id = id, cmd = command, float_opts = { width = 0.49, height = 1.0, col = 0.5 } }
+      opts.float_opts = { width = 0.49, height = 1.0, col = 0.5 }
     elseif id == "4" then
-      term.toggle { pos = pos, id = id, cmd = command, float_opts = free_area_float() }
-    else
-      term.toggle { pos = pos, id = id, cmd = command}
+      opts.float_opts = free_area_float()
     end
+
+    term.toggle(opts)
+
+    -- NvChad 2.5's create() ignores cmd when it has to create a new buffer;
+    -- it starts the shell only. Toggle once, then type the requested command
+    -- into the actual terminal job. Closing an existing visible terminal must
+    -- not relaunch anything.
+    if was_visible or not command then
+      return
+    end
+
+    vim.defer_fn(function ()
+      local entry = term_entry(id)
+      if not entry or not vim.api.nvim_buf_is_valid(entry.buf) then
+        return
+      end
+      local job = vim.b[entry.buf].terminal_job_id
+      if job then
+        vim.api.nvim_chan_send(job, command .. "\n")
+      end
+    end, 150)
   end
 end
 -- Term
