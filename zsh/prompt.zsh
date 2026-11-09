@@ -1,12 +1,33 @@
 # Maria Padilha zsh prompt.
 #
-# A small native prompt, deliberately not Starship. ANSI colour names follow
-# the terminal palette, so it tracks the caelestia light/dark scheme. This file
-# is sourced after conda init so conda's plain "(base) %m%#" PS1 cannot win.
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' formats ' %F{yellow}(%b)%f'
+# Mirrors fish's default prompt, which is what WezTerm shows:
+#   machine@machinedr ~/C/m/maria-padilha-dotfiles (main)>
+# Intermediate directories are shortened to one character, the branch is
+# shown, and no colours are forced. Sourced after conda init.
 setopt PROMPT_SUBST
-precmd() { vcs_info }
 
-PROMPT='%F{red}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_} %F{red}❯%f '
-PROMPT2='%F{red}…%f '
+function padilha_pwd() {
+    local p=${PWD/#$HOME/\~}
+    local -a parts out
+    parts=("${(@s:/:)p}")
+    local i
+    for (( i = 1; i <= ${#parts}; i++ )); do
+        local part=${parts[i]}
+        if (( i == ${#parts} )) || [[ $part == "~" || -z $part ]]; then
+            out+=("$part")
+        else
+            out+=("${part[1]}")
+        fi
+    done
+    local IFS=/
+    print -n "${out[*]}"
+}
+
+function padilha_git() {
+    local branch
+    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || return
+    [[ -n $branch ]] && print -n " ($branch)"
+}
+
+PROMPT='%n@%m $(padilha_pwd)$(padilha_git)> '
+PROMPT2='> '
