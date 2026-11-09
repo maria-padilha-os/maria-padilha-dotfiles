@@ -126,6 +126,24 @@ local function apply(p, mode)
     hl("StatusLine",    { fg = p.onSurface, bg = container_bg })
     hl("StatusLineNC",  { fg = p.onSurfaceVariant, bg = container_low_bg })
     hl("TabLineSel",    { fg = p.primary, bg = bg, bold = true })
+
+    -- NvChad's tabufline uses its own Tb* groups. Base46 normally supplies
+    -- them; a standalone colorscheme must do it or every buffer looks alike.
+    hl("TbFill",            { bg = container_low_bg })
+    hl("TbBufOn",           { fg = p.onSurface, bg = p.surfaceContainerHigh, bold = true })
+    hl("TbBufOff",          { fg = p.onSurfaceVariant, bg = bg })
+    hl("TbBufOnModified",   { fg = p.tertiary, bg = p.surfaceContainerHigh, bold = true })
+    hl("TbBufOffModified",  { fg = p.tertiary, bg = bg })
+    hl("TbBufOnClose",      { fg = p.error, bg = p.surfaceContainerHigh })
+    hl("TbBufOffClose",     { fg = p.outline, bg = bg })
+    hl("TbTabNewBtn",       { fg = p.onSurface, bg = p.surfaceContainerHigh })
+    hl("TbTabOn",           { fg = p.primary, bg = p.surfaceContainerHigh, bold = true })
+    hl("TbTabOff",          { fg = p.onSurfaceVariant, bg = bg })
+    hl("TbTabCloseBtn",     { fg = p.onError, bg = p.error })
+    hl("TBTabTitle",        { fg = p.onPrimary, bg = p.primary })
+    hl("TbThemeToggleBtn",  { fg = p.onSurface, bg = p.surfaceContainerHighest, bold = true })
+    hl("TbCloseAllBufsBtn", { fg = p.onError, bg = p.error, bold = true })
+
     hl("WinBar",        { fg = p.onSurfaceVariant, bg = bg })
 
     -- Spell
