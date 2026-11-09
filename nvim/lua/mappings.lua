@@ -166,7 +166,7 @@ local dsh_tui = function ()
     local found = table.concat(lines, "\n"):match('"mode"%s*:%s*"([^"]+)"')
     if found == "dark" then mode = "dark" end
   end
-  return ("DSH_TUI_THEME=padilha-%s dsh --profile dsh-tui . && exit"):format(mode)
+  return "DSH_TUI_THEME=padilha:dynamic dsh --profile dsh-tui . && exit"
 end
 
 map("n", "<leader>ld", mterm("float", "4", dsh_tui), { desc = "dsh-tui"  })

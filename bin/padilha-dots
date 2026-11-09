@@ -375,6 +375,13 @@ for name in $names; do
         fi
         ln -sfn "$src" "$dst"
         printf '%s -> %s\n' "$dst" "$src"
+        # The runtime theme plugin is loaded from the profile's node_modules.
+        profile="${DSH_HOME:-$HOME/.dsh}/profiles/dsh-tui"
+        if [ -d "$root/dsh-tui/plugin" ]; then
+            mkdir -p "$profile/node_modules"
+            ln -sfn "$root/dsh-tui/plugin" "$profile/node_modules/padilha-theme-sync"
+            printf '%s -> %s\n' "$profile/node_modules/padilha-theme-sync" "$root/dsh-tui/plugin"
+        fi
         continue
     fi
 
