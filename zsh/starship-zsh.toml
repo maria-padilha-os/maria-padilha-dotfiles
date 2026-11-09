@@ -1,7 +1,7 @@
 # version: 1.0.0
 
 add_newline = false
-continuation_prompt = "[▸▹ ](dimmed white)"
+continuation_prompt = "[▸▹ ](dimmed default)"
 
 format = """($nix_shell$container$git_metrics\n)$cmd_duration\
 $hostname\
@@ -22,7 +22,7 @@ symbol = ' '
 
 [character]
 format = "$symbol "
-success_symbol = "[◎](bold italic bright-yellow)"
+success_symbol = "[◎](bold italic yellow)"
 error_symbol = "[○](italic purple)"
 vimcmd_symbol = "[■](italic dimmed green)"
 # not supported in zsh
@@ -36,12 +36,12 @@ style = 'green italic'
 
 [sudo]
 format = "[$symbol]($style)"
-style = "bold italic bright-purple"
+style = "bold italic magenta"
 symbol = "⋈┈"
 disabled = false
 
 [username]
-style_user = "bright-yellow bold italic"
+style_user = "yellow bold italic"
 style_root = "purple bold italic"
 format = "[⭘ $user]($style) "
 disabled = false
@@ -56,15 +56,15 @@ use_os_path_sep = true
 style = "italic blue"
 format = '[$path]($style)[$read_only]($read_only_style)'
 repo_root_style = 'bold blue'
-repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) [△](bold bright-blue)'
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) [△](bold blue)'
 
 [cmd_duration]
 min_time = 0
-format = "[◄ $duration ](italic white)"
+format = "[◄ $duration ](italic default)"
 
 [jobs]
 format = "[$symbol$number]($style) "
-style = "white"
+style = "default"
 symbol = "[▶](blue italic)"
 
 [localip]
@@ -77,7 +77,7 @@ disabled = false
 format = "[ $time]($style)"
 time_format = "%R"
 utc_time_offset = "local"
-style = "italic dimmed white"
+style = "italic dimmed default"
 
 [battery]
 format = "[ $percentage $symbol]($style)"
@@ -93,7 +93,7 @@ style = "italic bold red"
 
 [[battery.display]]
 threshold = 60
-style = "italic dimmed bright-purple"
+style = "italic dimmed magenta"
 
 [[battery.display]]
 threshold = 70
@@ -101,8 +101,8 @@ style = "italic dimmed yellow"
 
 [git_branch]
 format = " [$branch(:$remote_branch)]($style)"
-symbol = "[△](bold italic bright-blue)"
-style = "italic bright-blue"
+symbol = "[△](bold italic blue)"
+style = "italic blue"
 truncation_symbol = "⋯"
 truncation_length = 11
 ignore_branches = ["main", "master"]
@@ -116,17 +116,17 @@ ignore_submodules = true
 disabled = false
 
 [git_status]
-style = "bold italic bright-blue"
+style = "bold italic blue"
 format = "([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))"
-conflicted = "[◪◦](italic bright-magenta)"
-ahead = "[▴│[${count}](bold white)│](italic green)"
-behind = "[▿│[${count}](bold white)│](italic red)"
-diverged = "[◇ ▴┤[${ahead_count}](regular white)│▿┤[${behind_count}](regular white)│](italic bright-magenta)"
-untracked = "[◌◦](italic bright-yellow)"
-stashed = "[◃◈](italic white)"
+conflicted = "[◪◦](italic magenta)"
+ahead = "[▴│[${count}](bold default)│](italic green)"
+behind = "[▿│[${count}](bold default)│](italic red)"
+diverged = "[◇ ▴┤[${ahead_count}](regular default)│▿┤[${behind_count}](regular default)│](italic magenta)"
+untracked = "[◌◦](italic yellow)"
+stashed = "[◃◈](italic default)"
 modified = "[●◦](italic yellow)"
-staged = "[▪┤[$count](bold white)│](italic bright-cyan)"
-renamed = "[◎◦](italic bright-blue)"
+staged = "[▪┤[$count](bold default)│](italic cyan)"
+renamed = "[◎◦](italic blue)"
 deleted = "[✕](italic red)"
 
 [deno]
@@ -137,10 +137,10 @@ version_format = "${raw}"
 format = " [lua](italic) [${symbol}${version}]($style)"
 version_format = "${raw}"
 symbol = "⨀ "
-style = "bold bright-yellow"
+style = "bold yellow"
 
 [nodejs]
-format = " [node](italic) [◫ ($version)](bold bright-green)"
+format = " [node](italic) [◫ ($version)](bold green)"
 version_format = "${raw}"
 detect_files = ["package-lock.json", "yarn.lock"]
 detect_folders = ["node_modules"]
@@ -148,9 +148,9 @@ detect_extensions = []
 
 [python]
 format = " [py](italic) [${symbol}${version}]($style)"
-symbol = "[⌉](bold bright-blue)⌊ "
+symbol = "[⌉](bold blue)⌊ "
 version_format = "${raw}"
-style = "bold bright-yellow"
+style = "bold yellow"
 
 [ruby]
 format = " [rb](italic) [${symbol}${version}]($style)"
@@ -173,7 +173,7 @@ style = "dimmed yellow italic bold"
 [swift]
 format = " [sw](italic) [${symbol}${version}]($style)"
 symbol = "◁ "
-style = "bold bright-red"
+style = "bold red"
 version_format = "${raw}"
 
 [aws]
@@ -237,7 +237,7 @@ format = " nim [$symbol($version )]($style)"
 [nix_shell]
 style = 'bold italic dimmed blue'
 symbol = '✶'
-format = '[$symbol nix⎪$state⎪]($style) [$name](italic dimmed white)'
+format = '[$symbol nix⎪$state⎪]($style) [$name](italic dimmed default)'
 impure_msg = '[⌽](bold dimmed red)'
 pure_msg = '[⌾](bold dimmed green)'
 unknown_msg = '[◌](bold dimmed yellow)'
