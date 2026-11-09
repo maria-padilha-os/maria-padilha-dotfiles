@@ -18,3 +18,6 @@ vim.filetype.add({
     vp = "glsl",
   }
 })
+
+-- Interactive terminals use the same fish prompt as WezTerm.
+vim.o.shell = '/usr/bin/fish'
