@@ -19,3 +19,5 @@ vim.filetype.add({
   }
 })
 
+-- All nvim terminals use zsh; never inherit a fish shell from an old session.
+vim.o.shell = '/usr/bin/zsh'
