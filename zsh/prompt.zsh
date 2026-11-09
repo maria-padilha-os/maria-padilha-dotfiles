@@ -4,4 +4,7 @@
 # sourced after conda init so conda's PS1 cannot override it.
 if command -v starship >/dev/null 2>&1; then
     eval "$(starship init zsh)"
+    # Use the fish formatter for the prompt body, so zsh matches the WezTerm
+    # fish prompt instead of Starship's zsh powerline variant.
+    export STARSHIP_SHELL=fish
 fi
