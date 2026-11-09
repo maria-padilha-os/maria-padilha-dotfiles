@@ -201,7 +201,6 @@ create_bind(vars.kbColorPicker, hl.dsp.exec_cmd("hyprpicker -a"))
 
 -- Handy extras
 create_bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload"))
-create_bind("SUPER + SHIFT + 4", hl.dsp.exec_cmd("padilha-shot -r"))
 create_bind("XF86Search", hl.dsp.global("caelestia:launcher"))
 
 -- Brightness
