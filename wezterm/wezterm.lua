@@ -89,7 +89,7 @@ config.window_decorations = 'NONE'
 -- Slightly less transparent than the deep-night look; the Hyprland WezTerm
 -- rule matches this so the global 0.95 opacity rule cannot flatten it.
 config.window_background_opacity = 0.85
-config.default_prog = { 'sh', '-c', 'SHELL=/usr/bin/fish mc; exec fish' }
+config.default_prog = { 'sh', '-c', 'mc; exec zsh' }
 
 config.scrollback_lines = 10000
 config.audible_bell = 'Disabled'

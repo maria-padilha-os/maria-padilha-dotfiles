@@ -19,5 +19,3 @@ vim.filetype.add({
   }
 })
 
--- Interactive terminals use the same fish prompt as WezTerm.
-vim.o.shell = '/usr/bin/fish'
