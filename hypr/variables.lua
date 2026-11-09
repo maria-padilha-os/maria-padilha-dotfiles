@@ -124,6 +124,7 @@ return {
     -- PrintScreen is the base for every screenshot action. Ctrl/Alt variants
     -- are intentionally absent: they have no distinct action here, and a
     -- duplicate binding would just hide that fact.
+    kbAssistant                = "SUPER + A",
     kbScreenshot               = "Print",
     kbScreenshotFreeze         = "SUPER + Print",
     kbScreenshotRegion         = "SHIFT + Print",

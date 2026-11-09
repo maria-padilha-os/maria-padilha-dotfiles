@@ -191,6 +191,7 @@ create_bind("SUPER + B", hl.dsp.exec_cmd(vars.browser))
 create_bind("XF86Calculator", hl.dsp.exec_cmd("galculator"))
 
 -- Utilities
+create_bind(vars.kbAssistant, hl.dsp.global("caelestia:assistant"))
 create_bind(vars.kbScreenshot, hl.dsp.exec_cmd("padilha-shot"), locked)
 create_bind(vars.kbScreenshotFreeze, hl.dsp.global("caelestia:screenshotFreeze"))
 create_bind(vars.kbScreenshotRegion, hl.dsp.global("caelestia:screenshot"))
