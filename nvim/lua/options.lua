@@ -21,3 +21,15 @@ vim.filetype.add({
 
 -- All nvim terminals use zsh; never inherit a fish shell from an old session.
 vim.o.shell = '/usr/bin/fish'
+
+-- Nvim's embedded terminal does not answer OSC 11. Give child programs the
+-- same foreground/background hint WezTerm would report, following day/night.
+local function set_terminal_colour_hint()
+  local mode = "light"
+  local ok, lines = pcall(vim.fn.readfile, vim.fs.normalize "~/.local/state/caelestia/scheme.json")
+  if ok and table.concat(lines, "\n"):match('"mode"%s*:%s*"dark"') then
+    mode = "dark"
+  end
+  vim.env.COLORFGBG = mode == "dark" and "15;0" or "0;15"
+end
+set_terminal_colour_hint()
