@@ -81,7 +81,7 @@ config.keys = {
 -- Matches foot: JetBrains Mono 12, 25px of padding, no decorations, and mc on
 -- top of fish (F10 quits mc into the shell in the same window).
 config.font = wezterm.font_with_fallback { 'JetBrains Mono Nerd Font', 'Noto Color Emoji' }
-config.font_size = 12.0
+config.font_size = 14.0
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' } -- foot draws them separately
 
 config.window_padding = { left = 25, right = 25, top = 25, bottom = 25 }
@@ -93,6 +93,9 @@ config.default_prog = { 'sh', '-c', 'SHELL=/usr/bin/fish mc; exec fish' }
 
 config.scrollback_lines = 10000
 config.audible_bell = 'Disabled'
+-- The theme engine touches this file after a palette change; reload it in
+-- already-open windows instead of leaving a stale light/dark background.
+config.automatically_reload_config = true
 config.check_for_updates = false
 config.use_ime = true
 config.hide_tab_bar_if_only_one_tab = true
