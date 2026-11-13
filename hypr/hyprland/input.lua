@@ -24,5 +24,8 @@ hl.config({
 
     cursor = {
         hotspot_padding = 1,
+        -- Hardware cursor planes are not restored reliably after DPMS on this
+        -- GPU; the software cursor avoids the invisible-cursor window on wake.
+        no_hardware_cursors = true,
     },
 })

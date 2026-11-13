@@ -52,7 +52,7 @@ return {
     -- Misc
     volumeStep                 = 10,
     volumeMax                  = 100,
-    cursorTheme                = "sweet-cursors",
+    cursorTheme                = "Adwaita",
     cursorSize                 = 24,
     sleepGestureCmd            = "notify-send -u critical -a 'Maria Padilha' 'Sleep is disabled' 's2idle/hibernate are broken on this laptop; close the lid to lock.'",
     specialWsCloseAny          = true,
