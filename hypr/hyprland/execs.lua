@@ -104,11 +104,6 @@ local function apply_resizer_rules(win)
     }
     local pip_actions = fn.move_actions(win) or {}
 
-    -- Bitwarden
-    fn.resizer(win, match_class("Bitwarden", true), 20, 54, float_center)                                                -- Native app
-    fn.resizer(win, match_title("^Extension: %(Bitwarden Password Manager%) %- Bitwarden", false), 20, 54, float_center) -- Firefox
-    fn.resizer(win, match_class("nngceckbapebfimnlniiiahkandclblb", true), 20, 54, float_center)                         -- Chromium
-
     -- Picture in picture
     fn.resizer(win, match_title("^Picture[- ]in[- ][Pp]icture$", false), 0, 0, pip_actions)
 
