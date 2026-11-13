@@ -152,6 +152,7 @@ return {
     kbDashboardWeather         = "SUPER + ALT + W",
     kbExtensionTranslator      = "SUPER + ALT + T",
     kbExtensionCalculator      = "SUPER + ALT + C",
+    kbExtensionColourPicker    = "SUPER + ALT + P",
     kbExtensionMaps            = "SUPER + ALT + O",
     kbExtensionTuner           = "SUPER + ALT + G",
     kbExtensionFiles           = "SUPER + ALT + E",
