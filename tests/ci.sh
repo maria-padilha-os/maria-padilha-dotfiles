@@ -24,7 +24,7 @@ while IFS= read -r -d '' file; do
     fi
 done < <(find "$root/hypr" -name '*.lua' -print0)
 
-for file in "$dots" "$root/micro/install.sh"; do
+for file in "$dots" "$root/micro/install.sh" "$root/tests/keymaps.sh"; do
     if sh -n "$file"; then
         ok "sh -n ${file#"$root"/}"
     else
@@ -33,7 +33,7 @@ for file in "$dots" "$root/micro/install.sh"; do
 done
 
 if command -v shellcheck >/dev/null 2>&1; then
-    if shellcheck --severity=warning "$dots" "$root/micro/install.sh"; then
+    if shellcheck --severity=warning "$dots" "$root/micro/install.sh" "$root/tests/keymaps.sh"; then
         ok "shellcheck"
     else
         bad "shellcheck"
@@ -49,6 +49,14 @@ while IFS= read -r -d '' file; do
         bad "json ${file#"$root"/}"
     fi
 done < <(find "$root" -path "$root/.git" -prune -o -name '*.json' -print0)
+
+echo "keymaps"
+
+if "$root/tests/keymaps.sh"; then
+    ok "nvim keymap contract"
+else
+    bad "nvim keymap contract"
+fi
 
 echo "linking"
 

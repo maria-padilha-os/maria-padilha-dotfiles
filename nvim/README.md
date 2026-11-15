@@ -3,10 +3,15 @@
 > `caelestia_transparent` and base46 transparency) so it always matches the
 > WezTerm surface and its 0.85 opacity; the terminal supplies the colour.
 
-## Defold keys
+## Defold keys and terminal launchers
 
 Defold's project build runs on `<F5>` and the no-build relaunch on `<F6>`.
 Backspace is not mapped, so it keeps Neovim's normal cursor movement.
+
+Terminal launchers must be explicit: a non-empty mode list, an explicit key,
+and a `desc`. They must not use normal editing keys such as `<BS>`,
+`<A-BS>`, `<Del>`, or a bare printable character. `tests/keymaps.sh` checks
+this from the Lua source, without starting Neovim or a terminal.
 
 ## DSH theme
 
