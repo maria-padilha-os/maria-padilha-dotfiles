@@ -74,6 +74,14 @@ else
     bad "thunar and GTK config contract"
 fi
 
+echo "discord"
+
+if python3 "$root/tests/discord_theme.py"; then
+    ok "discord theme contract"
+else
+    bad "discord theme contract"
+fi
+
 echo "linking"
 
 home="$tmp/home"
