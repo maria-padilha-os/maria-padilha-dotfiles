@@ -1,0 +1,213 @@
+/**
+ * @name Maria Padilha
+ * @author Maria Padilha
+ * @description A static Material You recolour for Discord that follows the
+ *   generated Maria Padilha palette. Unsupported by Discord; opt-in only.
+ * @version 1.0.0
+ * @license GPL-3.0-only
+ */
+
+/* DISCORD DOES NOT SUPPORT ARBITRARY CSS. This file only does anything when
+ * a third-party client mod (Vencord or BetterDiscord) injects it. Neither the
+ * mod nor this file is installed, patched or updated by this repository.
+ *
+ * The theme is deliberately static: no JavaScript, no @import, no remote URL,
+ * no font or image asset, no token/account/message access, and no updater.
+ *
+ * PALETTE CONTRACT
+ * `padilha-theme` writes the same `--lilith-*` custom properties that Firefox
+ * uses into `chrome/lilith.css`. Paste that generated `:root { ... }` block
+ * above this file's `:where(:root)` fallback (or anywhere in the same
+ * QuickCSS sheet). The generated :root has higher specificity than
+ * :where(:root), so the wallpaper palette wins even though the fallback comes
+ * later. If no generated block is present, the dark fallback below is used.
+ */
+
+/* Fallback palette only. The generated :root from `padilha-theme` wins. */
+:where(:root) {
+  --lilith-scheme: dark;
+  --lilith-bg: #131317;
+  --lilith-surface: #131317;
+  --lilith-surface-dim: #131317;
+  --lilith-surface-container-lowest: #0e0e12;
+  --lilith-surface-container-low: #1c1b1f;
+  --lilith-surface-container: #201f23;
+  --lilith-surface-container-high: #2a292e;
+  --lilith-surface-container-highest: #353438;
+
+  /* Older generated palettes used the short names. Keep both spellings so a
+   * stale palette cannot leave a surface transparent. */
+  --lilith-surface-low: #1c1b1f;
+  --lilith-surface-lowest: #0e0e12;
+
+  --lilith-on-surface: #e5e1e7;
+  --lilith-on-surface-variant: #c8c5d1;
+
+  --lilith-primary: #c2c1ff;
+  --lilith-on-primary: #2a2a60;
+  --lilith-primary-container: #7171ac;
+  --lilith-on-primary-container: #ffffff;
+  --lilith-secondary: #c6c4e0;
+  --lilith-on-secondary: #2e2e44;
+  --lilith-secondary-container: #45455c;
+  --lilith-on-secondary-container: #b4b2ce;
+  --lilith-tertiary: #f5b2e0;
+  --lilith-on-tertiary: #4e1e44;
+  --lilith-tertiary-container: #bb7da9;
+  --lilith-on-tertiary-container: #000000;
+
+  --lilith-outline: #918f9a;
+  --lilith-outline-variant: #47464f;
+  --lilith-error: #ffb4ab;
+  --lilith-on-error: #690005;
+  --lilith-error-container: #93000a;
+  --lilith-on-error-container: #ffdad6;
+
+  --lilith-inverse-surface: #e5e1e7;
+  --lilith-inverse-on-surface: #313034;
+  --lilith-inverse-primary: #595992;
+  --lilith-shadow: #000000;
+  --lilith-scrim: #000000;
+}
+
+/* Discord's own design tokens. The generated palette feeds these; every
+ * reference keeps a literal fallback so an incomplete palette is harmless. */
+:root,
+.theme-dark,
+.theme-light {
+  color-scheme: var(--lilith-scheme, dark);
+
+  /* Legacy Discord surface/text tokens (still used across the client). */
+  --background-primary: var(--lilith-surface, #131317);
+  --background-secondary: var(--lilith-surface-container-low, #1c1b1f);
+  --background-secondary-alt: var(--lilith-surface-container, #201f23);
+  --background-tertiary: var(--lilith-bg, #131317);
+  --background-accent: var(--lilith-primary, #c2c1ff);
+  --background-floating: var(--lilith-surface-container-high, #2a292e);
+  --background-nested-floating: var(--lilith-surface-container-high, #2a292e);
+  --background-mobile-primary: var(--lilith-surface, #131317);
+  --background-mobile-secondary: var(--lilith-surface-container-low, #1c1b1f);
+
+  --background-modifier-hover: color-mix(in srgb, var(--lilith-on-surface, #e5e1e7) 9%, transparent);
+  --background-modifier-active: color-mix(in srgb, var(--lilith-on-surface, #e5e1e7) 14%, transparent);
+  --background-modifier-selected: color-mix(in srgb, var(--lilith-primary, #c2c1ff) 20%, transparent);
+  --background-modifier-accent: var(--lilith-outline-variant, #47464f);
+  --background-mentioned: color-mix(in srgb, var(--lilith-primary, #c2c1ff) 12%, transparent);
+  --background-mentioned-hover: color-mix(in srgb, var(--lilith-primary, #c2c1ff) 18%, transparent);
+  --background-message-hover: color-mix(in srgb, var(--lilith-on-surface, #e5e1e7) 5%, transparent);
+  --background-message-highlight: color-mix(in srgb, var(--lilith-primary, #c2c1ff) 10%, transparent);
+
+  --channeltextarea-background: var(--lilith-surface-container, #201f23);
+  --chat-background: var(--lilith-surface, #131317);
+  --chat-input-container-background: var(--lilith-surface-container, #201f23);
+  --home-background: var(--lilith-bg, #131317);
+  --modal-background: var(--lilith-surface-container, #201f23);
+  --modal-footer-background: var(--lilith-surface-container-low, #1c1b1f);
+  --card-primary-bg: var(--lilith-surface-container, #201f23);
+  --card-secondary-bg: var(--lilith-surface-container-low, #1c1b1f);
+  --deprecated-card-bg: var(--lilith-surface-container, #201f23);
+  --input-background: var(--lilith-surface-container, #201f23);
+  --input-pressed-background: var(--lilith-surface-container-high, #2a292e);
+
+  --text-normal: var(--lilith-on-surface, #e5e1e7);
+  --text-primary: var(--lilith-on-surface, #e5e1e7);
+  --text-secondary: var(--lilith-on-surface-variant, #c8c5d1);
+  --text-muted: var(--lilith-on-surface-variant, #c8c5d1);
+  --text-low-contrast: var(--lilith-on-surface-variant, #c8c5d1);
+  --header-primary: var(--lilith-on-surface, #e5e1e7);
+  --header-secondary: var(--lilith-on-surface-variant, #c8c5d1);
+  --header-muted: var(--lilith-on-surface-variant, #c8c5d1);
+  --interactive-normal: var(--lilith-on-surface-variant, #c8c5d1);
+  --interactive-hover: var(--lilith-on-surface, #e5e1e7);
+  --interactive-active: var(--lilith-on-surface, #e5e1e7);
+  --interactive-muted: var(--lilith-outline, #918f9a);
+  --channels-default: var(--lilith-on-surface-variant, #c8c5d1);
+  --channel-icon: var(--lilith-on-surface-variant, #c8c5d1);
+
+  --text-link: var(--lilith-primary, #c2c1ff);
+  --text-brand: var(--lilith-primary, #c2c1ff);
+  --text-danger: var(--lilith-error, #ffb4ab);
+  --status-danger: var(--lilith-error, #ffb4ab);
+  --status-danger-background: var(--lilith-error, #ffb4ab);
+  --focus-primary: var(--lilith-primary, #c2c1ff);
+  --control-brand-foreground: var(--lilith-primary, #c2c1ff);
+  --control-brand-foreground-new: var(--lilith-primary, #c2c1ff);
+  --mention-foreground: var(--lilith-primary, #c2c1ff);
+  --mention-background: color-mix(in srgb, var(--lilith-primary, #c2c1ff) 15%, transparent);
+
+  --scrollbar-thin-thumb: var(--lilith-outline-variant, #47464f);
+  --scrollbar-thin-track: transparent;
+  --scrollbar-auto-thumb: var(--lilith-outline-variant, #47464f);
+  --scrollbar-auto-track: var(--lilith-bg, #131317);
+  --scrollbar-auto-scrollbar-color-thumb: var(--lilith-outline-variant, #47464f);
+  --scrollbar-auto-scrollbar-color-track: var(--lilith-bg, #131317);
+
+  /* Newer Discord design tokens. The names mirror the client's current
+   * surface vocabulary; the legacy tokens above cover older builds. */
+  --bg-base-primary: var(--lilith-surface, #131317);
+  --bg-base-secondary: var(--lilith-surface-container-low, #1c1b1f);
+  --bg-base-tertiary: var(--lilith-bg, #131317);
+  --bg-surface-overlay: var(--lilith-surface-container-high, #2a292e);
+  --bg-surface-overlay-tmp: var(--lilith-surface-container-high, #2a292e);
+  --bg-surface-raised: var(--lilith-surface-container, #201f23);
+  --bg-mod-faint: color-mix(in srgb, var(--lilith-on-surface, #e5e1e7) 4%, transparent);
+  --bg-mod-subtle: color-mix(in srgb, var(--lilith-on-surface, #e5e1e7) 8%, transparent);
+  --bg-mod-strong: color-mix(in srgb, var(--lilith-on-surface, #e5e1e7) 16%, transparent);
+  --border-faint: color-mix(in srgb, var(--lilith-outline-variant, #47464f) 45%, transparent);
+  --border-subtle: var(--lilith-outline-variant, #47464f);
+  --border-strong: var(--lilith-outline, #918f9a);
+
+  --background-base-lowest: var(--lilith-surface-container-lowest, #0e0e12);
+  --background-base-low: var(--lilith-surface-container-low, #1c1b1f);
+  --background-base: var(--lilith-surface, #131317);
+  --background-surface-high: var(--lilith-surface-container-high, #2a292e);
+  --background-surface-higher: var(--lilith-surface-container-high, #2a292e);
+  --background-surface-highest: var(--lilith-surface-container-highest, #353438);
+}
+
+/* The outer canvas. Discord usually paints this from its own tokens, but a
+ * literal colour here avoids a flash of the old theme on startup. */
+html,
+body,
+#app-mount {
+  background-color: var(--lilith-bg, #131317);
+  color: var(--lilith-on-surface, #e5e1e7);
+}
+
+::selection {
+  background-color: var(--lilith-primary-container, #7171ac);
+  color: var(--lilith-on-primary-container, #ffffff);
+}
+
+/* Chromium scrollbars in Discord. Keep the track transparent so the palette's
+ * surface shows through instead of drawing a second slab of colour. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--lilith-outline-variant, #47464f);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--lilith-outline, #918f9a);
+}
+
+/* Focus is a real accessibility surface: keep it visible but let the
+ * generated primary colour carry it. */
+:where(a, button, input, textarea, select, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid var(--lilith-primary, #c2c1ff);
+  outline-offset: 2px;
+}
+
+/* Code blocks and inline code are frequent low-contrast spots. */
+:where(code, pre) {
+  background-color: var(--lilith-surface-container-low, #1c1b1f);
+  color: var(--lilith-on-surface, #e5e1e7);
+}

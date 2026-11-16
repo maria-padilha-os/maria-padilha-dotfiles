@@ -15,6 +15,7 @@ profile:
 | `mc/ini`, `mc/mc.keymap`, `mc/mc.ext.ini` | the same names under `~/.config/mc` |
 | `firefox/user.js` | copied into the default Firefox profile |
 | `firefox/chrome/*.css` | linked into `<profile>/chrome/` |
+| `discord/theme.css` | **manual only** — loaded by a user-installed client mod, never linked by `bin/padilha-dots` |
 
 `bin/padilha-dots` links the whole `hypr`, `nvim` and `wezterm` directories, and only the `btop.conf` file so the generated `themes/caelestia.theme` stays local.
 MC is different: only the three static files are linked, so `panels.ini`, the
@@ -31,6 +32,15 @@ skin. The generated Firefox palette deliberately keeps the `lilith.css`
 filename and the `--lilith-*` custom properties so the theme engine and both
 stylesheets stay compatible. See [`firefox/README.md`](firefox/README.md) for
 the one-time sequence.
+
+Discord has no supported arbitrary-CSS API. [`discord/theme.css`](discord/theme.css)
+is an explicitly opt-in stylesheet for users who choose to install Vencord or
+BetterDiscord themselves; `bin/padilha-dots` never installs, patches, links or
+updates a Discord client or a client mod. Loading any client mod violates
+Discord's Terms of Service, so read [`discord/README.md`](discord/README.md)
+before using it. The theme is static CSS: it consumes the generated
+`--lilith-*` palette with fallbacks, and has no token, account, message, network
+or auto-update access.
 
 User config (`hypr-vars.lua`, `monitors.lua`, `hypr-user.lua`) is read from
 `~/.config/padilha`. The pre-rename `~/.config/lilith` directory is used only
