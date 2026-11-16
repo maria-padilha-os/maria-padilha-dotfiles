@@ -66,6 +66,14 @@ else
     bad "firefox theme contract"
 fi
 
+echo "thunar"
+
+if python3 "$root/tests/thunar_config.py"; then
+    ok "thunar and GTK config contract"
+else
+    bad "thunar and GTK config contract"
+fi
+
 echo "linking"
 
 home="$tmp/home"
@@ -151,6 +159,60 @@ if [ -L "$tmp/micro/.config/micro/settings.json" ]; then
     ok "micro settings are linked"
 else
     bad "micro settings are linked"
+fi
+
+# Thunar keeps generated colour CSS next to settings.ini. Seed a sentinel and
+# make sure the linker only adds settings.ini.
+th_home="$tmp/thunar-home"
+mkdir -p "$th_home/.config/gtk-3.0"
+printf '%s\n' '/* generated sentinel */' >"$th_home/.config/gtk-3.0/gtk.css"
+printf '%s\n' '/* generated thunar sentinel */' >"$th_home/.config/gtk-3.0/thunar.css"
+if HOME="$th_home" XDG_CONFIG_HOME="$th_home/.config" "$dots" thunar >/dev/null 2>&1; then
+    ok "padilha-dots links Thunar and GTK in a scratch config"
+else
+    bad "padilha-dots links Thunar and GTK in a scratch config"
+fi
+for rel in Thunar/thunarrc Thunar/uca.xml gtk-3.0/settings.ini; do
+    if [ -L "$th_home/.config/$rel" ]; then
+        ok "$rel is linked"
+    else
+        bad "$rel is linked"
+    fi
+done
+for rel in thunarrc uca.xml; do
+    if [ "$(readlink -f "$th_home/.config/Thunar/$rel")" = "$root/thunar/$rel" ]; then
+        ok "Thunar $rel resolves to the checkout"
+    else
+        bad "Thunar $rel resolves to the checkout"
+    fi
+done
+if [ "$(cat "$th_home/.config/gtk-3.0/gtk.css")" = '/* generated sentinel */' ] && [ ! -L "$th_home/.config/gtk-3.0/gtk.css" ]; then
+    ok "the generated gtk.css is not overwritten"
+else
+    bad "the generated gtk.css is not overwritten"
+fi
+if [ "$(cat "$th_home/.config/gtk-3.0/thunar.css")" = '/* generated thunar sentinel */' ] && [ ! -L "$th_home/.config/gtk-3.0/thunar.css" ]; then
+    ok "the generated thunar.css is not overwritten"
+else
+    bad "the generated thunar.css is not overwritten"
+fi
+HOME="$th_home" XDG_CONFIG_HOME="$th_home/.config" "$dots" thunar >/dev/null 2>&1
+if [ "$(cat "$th_home/.config/gtk-3.0/gtk.css")" = '/* generated sentinel */' ]; then
+    ok "rerunning the linker keeps the generated gtk.css"
+else
+    bad "rerunning the linker keeps the generated gtk.css"
+fi
+
+gtk_home="$tmp/gtk-home"
+if HOME="$gtk_home" XDG_CONFIG_HOME="$gtk_home/.config" "$dots" gtk >/dev/null 2>&1; then
+    ok "padilha-dots gtk links only the GTK settings"
+else
+    bad "padilha-dots gtk links only the GTK settings"
+fi
+if [ -L "$gtk_home/.config/gtk-3.0/settings.ini" ] && [ ! -e "$gtk_home/.config/Thunar" ]; then
+    ok "the gtk target does not install Thunar"
+else
+    bad "the gtk target does not install Thunar"
 fi
 
 printf '\n%d passed, %d failed\n' "$pass" "$fail"

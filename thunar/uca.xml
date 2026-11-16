@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Maria Padilha Thunar custom actions.
+
+  Keep these actions non-destructive and single-target. Do not add privilege
+  escalation, recursive operations or shell pipelines.
+  tests/thunar_config.py rejects those patterns.
+-->
+<actions>
+  <action>
+    <icon>utilities-terminal</icon>
+    <name>Open Terminal Here</name>
+    <submenu></submenu>
+    <unique-id>padilha-open-terminal-here</unique-id>
+    <command>wezterm start --cwd %f</command>
+    <description>Open the selected folder in WezTerm</description>
+    <range></range>
+    <patterns>*</patterns>
+    <startup-notify/>
+    <directories/>
+  </action>
+  <action>
+    <icon>text-editor</icon>
+    <name>Edit in Neovim</name>
+    <submenu></submenu>
+    <unique-id>padilha-edit-in-neovim</unique-id>
+    <command>wezterm start --always-new-process nvim %f</command>
+    <description>Open the selected item in Neovim inside WezTerm</description>
+    <range></range>
+    <patterns>*</patterns>
+    <other-files/>
+    <text-files/>
+  </action>
+</actions>

@@ -1,0 +1,44 @@
+# Maria Padilha Thunar behaviour.
+#
+# Thunar 4.20 reads these values from Xfconf; this file is the tracked
+# migration source for a fresh profile and stays compatible with older
+# Thunar releases. Keep the group name and the mixed-case keys: Thunar
+# matches the key "nickname", not the Xfconf property name.
+#
+# Keep recursive permission changes interactive and do not enable destructive
+# custom actions. tests/thunar_config.py enforces both.
+
+[Configuration]
+DefaultView=ThunarDetailsView
+LastView=ThunarDetailsView
+LastSortColumn=THUNAR_COLUMN_NAME
+LastSortOrder=GTK_SORT_ASCENDING
+LastShowHidden=TRUE
+DefaultShowHidden=TRUE
+
+MiscFoldersFirst=TRUE
+MiscCaseSensitive=FALSE
+MiscDirectorySpecificSettings=FALSE
+MiscDateStyle=THUNAR_DATE_STYLE_SIMPLE
+MiscSingleClick=FALSE
+MiscVolumeManagement=TRUE
+
+# Ask before changing permissions recursively, and keep recursive search
+# off by default. Neither option performs a recursive write on its own.
+MiscRecursivePermissions=THUNAR_RECURSIVE_PERMISSIONS_ASK
+MiscRecursiveSearch=FALSE
+
+# Confirm before moving files to the trash and before closing a window with
+# several tabs. The permanent-delete action stays hidden from the menu.
+MiscConfirmMoveToTrash=TRUE
+ConfirmCloseMultipleTabs=TRUE
+MiscShowDeleteAction=FALSE
+
+LastLocationBar=ThunarLocationEntry
+LastSidePane=ThunarShortcutsPane
+LastStatusbarVisible=TRUE
+LastDetailsViewColumnOrder=THUNAR_COLUMN_NAME,THUNAR_COLUMN_SIZE,THUNAR_COLUMN_TYPE,THUNAR_COLUMN_DATE_MODIFIED
+LastDetailsViewVisibleColumns=THUNAR_COLUMN_NAME,THUNAR_COLUMN_SIZE,THUNAR_COLUMN_TYPE,THUNAR_COLUMN_DATE_MODIFIED
+LastDetailsViewFixedColumns=FALSE
+LastDetailsViewZoomLevel=THUNAR_ZOOM_LEVEL_SMALLER
+LastIconViewZoomLevel=THUNAR_ZOOM_LEVEL_NORMAL
