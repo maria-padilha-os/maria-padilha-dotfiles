@@ -89,3 +89,9 @@ compatibility aliases during the transition.
 ## License
 
 GPL-3.0-only. See [LICENSE](LICENSE).
+
+## Support
+
+Maria Padilha is free software under GPL-3.0-only. Donations are optional and
+never unlock features or hold back builds. See [SUPPORT.md](SUPPORT.md) or
+[sponsor development on GitHub](https://github.com/sponsors/Mateus-M-Reis).
