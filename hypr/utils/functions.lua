@@ -124,10 +124,16 @@ local function default_config()
             whatsapp = { enable = true, match = { { class = "whatsapp" } }, move = true },
         },
         music = {
-            spotify = {
+            youtube = {
                 enable  = true,
-                match   = { { class = "Spotify" }, { initial_title = "Spotify" }, { initial_title = "Spotify Free" } },
-                command = { "spicetify", "watch", "-s" },
+                -- Match the loaded YouTube Music window, or the window the
+                -- helper already placed on the music workspace. Never match a
+                -- normal Firefox window on another workspace.
+                match   = {
+                    { class = "firefox", title = "YouTube Music" },
+                    { class = "firefox", workspace = { name = "special:music" } },
+                },
+                command = { home .. "/.config/hypr/utils/youtube-music.sh" },
                 move    = true,
             },
             feishin = { enable = true, match = { { class = "feishin" } }, move = true },
