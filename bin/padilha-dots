@@ -346,7 +346,7 @@ for name in $names; do
             exit 1
         fi
         mkdir -p "$mc_dst"
-        for file in ini mc.keymap mc.ext.ini; do
+        for file in ini mc.keymap mc.ext.ini menu mc-clipboard-files.sh; do
             src="$mc_src/$file"
             dst="$mc_dst/$file"
             if [ ! -f "$src" ]; then

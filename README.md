@@ -1,5 +1,7 @@
 # Maria Padilha dotfiles
 
+[![❤ Sponsor on GitHub](https://img.shields.io/badge/%E2%9D%A4%20Sponsor-GitHub-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/Mateus-M-Reis)
+
 These are the configs Maria Padilha owns, in the `maria-padilha-dotfiles`
 repository. Most are linked into `~/.config`; Firefox's files go into its
 profile:
@@ -12,7 +14,8 @@ profile:
 | `btop/btop.conf` | `~/.config/btop/btop.conf` (the generated theme stays local) |
 | `thunderbird/user.js`, `thunderbird/chrome/*` | the selected Thunderbird profile (generated `padilha.css` stays in the profile) |
 | `lazygit/config.yml` | `~/.config/lazygit/config.yml` (ANSI palette, follows light/dark terminal) |
-| `mc/ini`, `mc/mc.keymap`, `mc/mc.ext.ini` | the same names under `~/.config/mc` |
+| `mc/ini`, `mc/mc.keymap`, `mc/mc.ext.ini`, `mc/menu` | the same names under `~/.config/mc` |
+| `mc/mc-clipboard-files.sh` | the same name under `~/.config/mc`; F2 copies file URIs to the Wayland clipboard and pastes them back |
 | `thunar/thunarrc`, `thunar/uca.xml` | the same names under `~/.config/Thunar` |
 | `gtk-3.0/settings.ini` | `~/.config/gtk-3.0/settings.ini` (only the settings, not the generated CSS) |
 | `firefox/user.js` | copied into the default Firefox profile |
