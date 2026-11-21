@@ -1,6 +1,6 @@
 # Thunar and GTK integration
 
-This directory owns Thunar's behaviour and its GTK 3 desktop integration. The
+This directory owns Thunar's behaviour and its GTK desktop integration. The
 colour CSS is generated elsewhere and must not be copied here.
 
 | checkout | destination |
@@ -8,10 +8,14 @@ colour CSS is generated elsewhere and must not be copied here.
 | `thunar/thunarrc` | `~/.config/Thunar/thunarrc` (linked) |
 | `thunar/uca.xml` | `~/.config/Thunar/uca.xml` (linked) |
 | `gtk-3.0/settings.ini` | `~/.config/gtk-3.0/settings.ini` (linked) |
+| `gtk-4.0/settings.ini` | `~/.config/gtk-4.0/settings.ini` (linked) |
+| `flatpak/overrides/global` | `${XDG_DATA_HOME:-~/.local/share}/flatpak/overrides/global` (linked, user-scoped) |
 
-`padilha-dots thunar` installs the two Thunar files and the GTK settings.
-`padilha-dots gtk` installs only the GTK settings. Both are part of the default
-`padilha-dots` run.
+`padilha-dots thunar` installs the two Thunar files and both GTK settings.
+`padilha-dots gtk` installs only the GTK settings, and `padilha-dots flatpak`
+installs the user-scoped Flatpak theme override. All three are part of the
+default `padilha-dots` run. See [`../flatpak/README.md`](../flatpak/README.md)
+for the Flatpak coverage and removal commands.
 
 ## Thunar behaviour
 
