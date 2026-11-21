@@ -1,6 +1,6 @@
 # Thunar and GTK integration
 
-This directory owns Thunar's behaviour and its GTK 3 desktop integration. The
+This directory owns Thunar's behaviour and its GTK desktop integration. The
 colour CSS is generated elsewhere and must not be copied here.
 
 | checkout | destination |
@@ -8,6 +8,7 @@ colour CSS is generated elsewhere and must not be copied here.
 | `thunar/thunarrc` | `~/.config/Thunar/thunarrc` (linked) |
 | `thunar/uca.xml` | `~/.config/Thunar/uca.xml` (linked) |
 | `gtk-3.0/settings.ini` | `~/.config/gtk-3.0/settings.ini` (linked) |
+| `gtk-4.0/settings.ini` | `~/.config/gtk-4.0/settings.ini` (linked) |
 
 `padilha-dots thunar` installs the two Thunar files and the GTK settings.
 `padilha-dots gtk` installs only the GTK settings. Both are part of the default
@@ -54,9 +55,10 @@ from the current wallpaper/scheme:
 `gtk.css` imports `thunar.css`. Both belong to the theme engine and are
 overwritten on every `padilha-theme apply`; edits there are lost. They stay
 local and are not tracked in this repository. The tracked
-`gtk-3.0/settings.ini` only selects the base GTK theme, Papirus-Dark icons, the
-Noto Sans UI font and the dark preference, so Thunar picks up the generated CSS
-without this repository ever owning `gtk.css`.
+`gtk-3.0/settings.ini` and `gtk-4.0/settings.ini` only select the base GTK
+theme, Papirus-Dark icons, the Noto Sans UI font and the dark preference, so
+Thunar picks up the generated CSS without this repository ever owning
+`gtk.css`.
 
 To regenerate the colours:
 
