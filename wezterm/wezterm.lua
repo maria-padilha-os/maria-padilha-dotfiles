@@ -81,7 +81,7 @@ config.keys = {
 -- Matches foot: JetBrains Mono 12, 25px of padding, no decorations, and mc on
 -- top of fish (F10 quits mc into the shell in the same window).
 config.font = wezterm.font_with_fallback { 'JetBrains Mono Nerd Font', 'Noto Color Emoji' }
-config.font_size = 14.0
+config.font_size = 13.0
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' } -- foot draws them separately
 
 config.window_padding = { left = 25, right = 25, top = 25, bottom = 25 }
