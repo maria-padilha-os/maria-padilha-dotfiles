@@ -126,14 +126,11 @@ local function default_config()
         music = {
             youtube = {
                 enable  = true,
-                -- Match the loaded YouTube Music window, or the window the
-                -- helper already placed on the music workspace. Never match a
-                -- normal Firefox window on another workspace.
-                match   = {
-                    { class = "firefox", title = "YouTube Music" },
-                    { class = "firefox", workspace = { name = "special:music" } },
-                },
-                command = { home .. "/.config/hypr/utils/youtube-music.sh" },
+                -- YouTube Music for Desktop is a single XWayland window with a
+                -- stable class. The window rule in rules.lua owns its placement
+                -- on special:music, so a plain launch is enough.
+                match   = { { class = "net.venipa.ytmdesktop" } },
+                command = { "youtube-music-for-desktop" },
                 move    = true,
             },
             feishin = { enable = true, match = { { class = "feishin" } }, move = true },

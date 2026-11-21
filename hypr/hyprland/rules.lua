@@ -144,15 +144,11 @@ tagged_rule(music_player_tag, {
     "Spotify",                                                     -- Spotify
     "Cider",                                                       -- Apple music
     "com.github.th-ch.youtube-music|com-maxrave-simpmusic-MainKt", -- YouTube music
+    "net.venipa.ytmdesktop",                                       -- YouTube Music for Desktop
 }, "class")
 tagged_rule(music_player_tag, {
     "Spotify|Spotify Free" -- Spotify wayland, it has no class for some reason
 }, "initial_title")
--- The YouTube Music environment is a normal Firefox window. Tag only the
--- YouTube Music window by title so other Firefox windows stay where they are.
-tagged_rule(music_player_tag, {
-    { class = "firefox", title = "YouTube Music" },
-})
 tagged_rule(communication_app_tag, {
     "discord|equibop|vesktop", -- Discord clients
     "whatsapp"                 -- Whatsapp
