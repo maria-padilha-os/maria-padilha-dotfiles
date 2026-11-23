@@ -1,0 +1,15 @@
+# Maria Padilha user-scoped Flatpak overrides.
+#
+# padilha-dots flatpak links this file to
+# ${XDG_DATA_HOME:-$HOME/.local/share}/flatpak/overrides/global. It only
+# affects the current user; no system-wide override and no root change.
+#
+# The read-only host paths let sandboxed GTK apps read the same named theme,
+# the Papirus-Dark icons, and the generated gtk.css/thunar.css colour sheets
+# that host GTK apps use. GTK_THEME selects the base theme inside the sandbox.
+[Context]
+filesystems=/usr/share/themes:ro;/usr/share/icons:ro;xdg-config/gtk-3.0:ro;xdg-config/gtk-4.0:ro;
+
+[Environment]
+GTK_THEME=adw-gtk3-dark
+GTK_CSD=1

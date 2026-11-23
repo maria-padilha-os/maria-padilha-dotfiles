@@ -7,13 +7,16 @@ summary. The checkout is `maria-padilha-dotfiles`, from
 remain only as compatibility aliases during the transition).
 
 Scope: Hyprland (`hypr/`), Neovim (`nvim/`), WezTerm (`wezterm/`), Firefox
-(`firefox/`), micro (`micro/`), Thunar/GTK (`thunar/`, `gtk-3.0/settings.ini`),
-and the static Midnight Commander files (`mc/`).
-These are linked into `~/.config/{hypr,nvim,wezterm}`, `~/.config/Thunar`, and
-the selected files under `~/.config/mc` and `~/.config/gtk-3.0`. User config is
-`~/.config/padilha` (the legacy `~/.config/lilith` is read only while the
-padilha directory does not exist). The generated caelestia MC skin and GTK
-colour sheets (`gtk.css`, `thunar.css`) stay in `maria-padilha-de`.
+(`firefox/`), micro (`micro/`), Thunar/GTK (`thunar/`, `gtk-3.0/settings.ini`,
+`gtk-4.0/settings.ini`, `flatpak/overrides/global`), and the static Midnight
+Commander files (`mc/`).
+These are linked into `~/.config/{hypr,nvim,wezterm}`, `~/.config/Thunar`, the
+selected files under `~/.config/mc`, `~/.config/gtk-3.0` and
+`~/.config/gtk-4.0`, plus the user-scoped Flatpak override under
+`$XDG_DATA_HOME/flatpak/overrides`. User config is `~/.config/padilha` (the
+legacy `~/.config/lilith` is read only while the padilha directory does not
+exist). The generated caelestia MC skin and GTK colour sheets (`gtk.css`,
+`thunar.css`) stay in `maria-padilha-de`.
 
 ## Safety
 
@@ -43,6 +46,7 @@ colour sheets (`gtk.css`, `thunar.css`) stay in `maria-padilha-de`.
 lua -e 'assert(loadfile("hypr/hyprland/execs.lua"))'
 sh -n bin/padilha-dots micro/install.sh
 python3 tests/thunar_config.py
+python3 tests/gtk_theme.py
 hyprctl reload && hyprctl configerrors
 nvim --headless '+checkhealth' '+qa'   # if diagnosing Neovim
 ```
