@@ -22,6 +22,11 @@ return {
       git = {
         ignore = false,
       },
+      -- Tarballs are build artefacts, not source. This has to be a tree
+      -- filter: git.ignore is off above, so .gitignore cannot hide them.
+      filters = {
+        custom = { "\\.tar\\.gz$" },
+      },
       actions = {
         open_file = {
           resize_window = false,
