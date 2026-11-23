@@ -160,7 +160,11 @@ def main() -> int:
     print("app theme fallback contract")
     palette = load_palette()
     report(bool(palette), "hypr/scheme/current.lua parses", str(PALETTE))
-    report(palette.get("surface") == "131318", "current palette is the tracked dark scheme")
+    report(
+        palette.get("surface") in {"131318", "f8fbf1"},
+        "current palette is a tracked Machinedramon scheme",
+        str(palette.get("surface")),
+    )
 
     required_roles = {
         "surface", "onSurface", "primary", "onPrimary", "primaryContainer",
@@ -306,6 +310,20 @@ def main() -> int:
         "tab-active": "surfaceContainerHigh",
         "accent": "primary",
     }
+    # The light template moves four surfaces so a light palette keeps its
+    # contrast; infer the mode from the tracked surface instead of assuming it.
+    channels = [int(palette["surface"][i:i + 2], 16) / 255 for i in (0, 2, 4)]
+    linear = [
+        c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+        for c in channels
+    ]
+    if 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2] > 0.5:
+        spice_roles.update({
+            "main": "surface",
+            "card": "surfaceContainer",
+            "sidebar": "surfaceContainer",
+            "tab-active": "surfaceContainer",
+        })
     spice_expected = {key: palette[role] for key, role in spice_roles.items()}
     check_colours(SPICE_COLOURS, "spicetify/Themes/caelestia/color.ini", spice, spice_expected)
 
