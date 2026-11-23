@@ -90,6 +90,14 @@ else
     bad "discord theme contract"
 fi
 
+echo "app themes"
+
+if python3 "$root/tests/app_theme_config.py"; then
+    ok "app theme fallback contract"
+else
+    bad "app theme fallback contract"
+fi
+
 echo "linking"
 
 home="$tmp/home"
@@ -176,6 +184,23 @@ if [ -L "$tmp/micro/.config/micro/settings.json" ]; then
 else
     bad "micro settings are linked"
 fi
+micro_colour="$tmp/micro/.config/micro/colorschemes/padilha.micro"
+if [ -f "$micro_colour" ] && [ ! -L "$micro_colour" ]; then
+    ok "micro colourscheme fallback is seeded as a file"
+else
+    bad "micro colourscheme fallback is seeded as a file"
+fi
+printf '\n# local-generated-colour\n' >>"$micro_colour"
+if HOME="$tmp/micro" XDG_CONFIG_HOME="$tmp/micro/.config" "$root/micro/install.sh" --no-plugins >/dev/null 2>&1; then
+    ok "micro installer runs again"
+else
+    bad "micro installer runs again"
+fi
+if grep -q '^# local-generated-colour$' "$micro_colour"; then
+    ok "micro installer keeps an existing generated colourscheme"
+else
+    bad "micro installer keeps an existing generated colourscheme"
+fi
 
 # Thunar keeps generated colour CSS next to settings.ini. Seed sentinels and
 # make sure the linker only adds the two settings files.
@@ -246,6 +271,62 @@ if [ -L "$gtk_home/.config/gtk-3.0/settings.ini" ] && [ -L "$gtk_home/.config/gt
     ok "the gtk target links both versions without installing Thunar"
 else
     bad "the gtk target links both versions without installing Thunar"
+fi
+if [ -L "$gtk_home/.config/gtk-4.0/settings.ini" ]; then
+    ok "the gtk target links the GTK 4 settings"
+else
+    bad "the gtk target links the GTK 4 settings"
+fi
+
+# cava, fuzzel, btop's theme and Spicetify's palette are generated whole by
+# padilha-theme. They must be seeded as real files only when absent, so a later
+# apply never writes into this checkout.
+app_home="$tmp/app-home"
+mkdir -p "$app_home/.config/gtk-3.0" "$app_home/.config/gtk-4.0"
+printf '%s\n' '/* generated gtk3 sentinel */' >"$app_home/.config/gtk-3.0/gtk.css"
+printf '%s\n' '/* generated gtk4 sentinel */' >"$app_home/.config/gtk-4.0/gtk.css"
+if HOME="$app_home" XDG_CONFIG_HOME="$app_home/.config" "$dots" cava fuzzel spicetify btop gtk >/dev/null 2>&1; then
+    ok "padilha-dots seeds the app fallbacks"
+else
+    bad "padilha-dots seeds the app fallbacks"
+fi
+for rel in cava/config fuzzel/fuzzel.ini spicetify/config-xpui.ini spicetify/Themes/caelestia/color.ini btop/themes/caelestia.theme; do
+    if [ -f "$app_home/.config/$rel" ] && [ ! -L "$app_home/.config/$rel" ]; then
+        ok "$rel is seeded as a file"
+    else
+        bad "$rel is seeded as a file"
+    fi
+done
+if [ -L "$app_home/.config/btop/btop.conf" ]; then
+    ok "btop.conf remains linked"
+else
+    bad "btop.conf remains linked"
+fi
+for rel in gtk-3.0/settings.ini gtk-4.0/settings.ini; do
+    if [ -L "$app_home/.config/$rel" ]; then
+        ok "$rel is linked by the app fallback run"
+    else
+        bad "$rel is linked by the app fallback run"
+    fi
+done
+if [ "$(cat "$app_home/.config/gtk-3.0/gtk.css")" = '/* generated gtk3 sentinel */' ] &&
+    [ "$(cat "$app_home/.config/gtk-4.0/gtk.css")" = '/* generated gtk4 sentinel */' ]; then
+    ok "the app fallback run keeps both generated gtk.css files"
+else
+    bad "the app fallback run keeps both generated gtk.css files"
+fi
+printf '\n# local-generated-cava\n' >>"$app_home/.config/cava/config"
+printf '\n# local-generated-btop\n' >>"$app_home/.config/btop/themes/caelestia.theme"
+HOME="$app_home" XDG_CONFIG_HOME="$app_home/.config" "$dots" cava btop >/dev/null 2>&1
+if grep -q '^# local-generated-cava$' "$app_home/.config/cava/config"; then
+    ok "a generated cava config is not overwritten by the fallback"
+else
+    bad "a generated cava config is not overwritten by the fallback"
+fi
+if grep -q '^# local-generated-btop$' "$app_home/.config/btop/themes/caelestia.theme"; then
+    ok "a generated btop theme is not overwritten by the fallback"
+else
+    bad "a generated btop theme is not overwritten by the fallback"
 fi
 
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
