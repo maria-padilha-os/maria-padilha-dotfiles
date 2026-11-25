@@ -86,9 +86,22 @@ config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' } -- foot draws them s
 
 config.window_padding = { left = 25, right = 25, top = 25, bottom = 25 }
 config.window_decorations = 'NONE'
--- Slightly less transparent than the deep-night look; the Hyprland WezTerm
--- rule matches this so the global 0.95 opacity rule cannot flatten it.
-config.window_background_opacity = 0.85
+-- Follow Settings -> Themes -> Transparency. padilha-transparency writes the
+-- numeric value and touches this file, and auto_reload_config applies it to
+-- open windows. text_background_opacity is what lets MC's default-background
+-- cells show the transparency too; foreground text stays opaque.
+local function read_window_opacity()
+    local handle = io.open((os.getenv('HOME') or '') .. '/.config/wezterm/opacity', 'r')
+    if not handle then return 0.85 end
+    local value = tonumber(handle:read('*a'))
+    handle:close()
+    if not value then return 0.85 end
+    return math.max(0.05, math.min(1.0, value))
+end
+
+local window_opacity = read_window_opacity()
+config.window_background_opacity = window_opacity
+config.text_background_opacity = window_opacity
 config.default_prog = { 'sh', '-c', 'SHELL=/usr/bin/fish mc; exec fish' }
 
 config.scrollback_lines = 10000
