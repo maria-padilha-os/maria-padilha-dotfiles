@@ -166,7 +166,9 @@ local dsh_tui = function ()
     local found = table.concat(lines, "\n"):match('"mode"%s*:%s*"([^"]+)"')
     if found == "dark" then mode = "dark" end
   end
-  return "DSH_TUI_THEME=padilha:dynamic dsh --profile dsh-tui . && exit"
+  -- --continue resumes this directory's latest session; the fallback keeps a
+  -- first launch (no session yet) from leaving a dead terminal.
+  return "(DSH_TUI_THEME=padilha:dynamic dsh --profile dsh-tui --continue . || DSH_TUI_THEME=padilha:dynamic dsh --profile dsh-tui .); exit"
 end
 
 map("n", "<leader>ld", mterm("float", "4", dsh_tui), { desc = "dsh-tui"  })
