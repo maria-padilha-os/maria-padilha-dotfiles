@@ -156,6 +156,7 @@ return {
     kbExtensionMaps            = "SUPER + ALT + O",
     kbExtensionTuner           = "SUPER + ALT + G",
     kbExtensionFiles           = "SUPER + ALT + E",
+    kbExtensionContacts        = "SUPER + ALT + SHIFT + C",
     kbLock                     = "SUPER + Escape",
     kbSleep                    = "SUPER + SHIFT + Escape",
 
