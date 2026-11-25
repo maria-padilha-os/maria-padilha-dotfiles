@@ -157,6 +157,7 @@ return {
     kbExtensionTuner           = "SUPER + ALT + G",
     kbExtensionFiles           = "SUPER + ALT + E",
     kbExtensionContacts        = "SUPER + ALT + SHIFT + C",
+    kbExtensionDictionary      = "SUPER + ALT + SHIFT + D",
     kbLock                     = "SUPER + Escape",
     kbSleep                    = "SUPER + SHIFT + Escape",
 
