@@ -77,6 +77,7 @@ create_bind(vars.kbExtensionMaps, hl.dsp.global("caelestia:extensionMaps"))
 create_bind(vars.kbExtensionTuner, hl.dsp.global("caelestia:extensionTuner"))
 create_bind(vars.kbExtensionFiles, hl.dsp.global("caelestia:extensionFiles"))
 create_bind(vars.kbExtensionContacts, hl.dsp.global("caelestia:extensionContacts"))
+create_bind(vars.kbExtensionDictionary, hl.dsp.global("caelestia:extensionDictionary"))
 -- Screen locking goes through hyprlock in its own process. Quickshell 0.3.2's
 -- PAM helper can kill the whole session when a fork fails (upstream #1275),
 -- and its lock surface has crashed on output changes before. padilha-lock
