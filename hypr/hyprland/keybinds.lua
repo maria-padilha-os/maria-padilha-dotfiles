@@ -63,6 +63,9 @@ create_bind(
 create_bind(vars.kbSession, hl.dsp.global("caelestia:session"))
 create_bind(vars.kbShowSidebar, hl.dsp.global("caelestia:sidebar"))
 create_bind(vars.kbClearNotifs, hl.dsp.global("caelestia:clearNotifs"), locked)
+-- Manual lock; logout is a separate action in the session panel.
+create_bind("SUPER + Escape", hl.dsp.exec_cmd("qs -c caelestia ipc call lock lock"))
+
 create_bind(vars.kbShowPanels, hl.dsp.global("caelestia:showall"))
 -- One shortcut per dashboard tab; pressing the active tab's shortcut closes it.
 create_bind(vars.kbDashboardDash, hl.dsp.global("caelestia:dashboardDash"))
