@@ -191,7 +191,9 @@ create_bind("SUPER + B", hl.dsp.exec_cmd(vars.browser))
 create_bind("XF86Calculator", hl.dsp.exec_cmd("galculator"))
 
 -- Utilities
-create_bind(vars.kbAssistant, hl.dsp.global("caelestia:assistant"))
+-- Invoke the shell IPC directly so the binding survives shell restarts even
+-- when Quickshell's global-shortcut registration id changes.
+create_bind(vars.kbAssistant, hl.dsp.exec_cmd("qs -c caelestia ipc call drawers toggle assistant"))
 create_bind(vars.kbScreenshot, hl.dsp.exec_cmd("padilha-shot"), locked)
 create_bind(vars.kbScreenshotFreeze, hl.dsp.global("caelestia:screenshotFreeze"))
 create_bind(vars.kbScreenshotRegion, hl.dsp.global("caelestia:screenshot"))
